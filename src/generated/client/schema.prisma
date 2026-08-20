@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model QuoteRequest {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  firstName       String
+  lastName        String
+  company         String?
+  phone           String
+  email           String
+  region          String
+  city            String
+  serviceType     String // ultima-milla, distribucion, carga, ecommerce
+  vehicleType     String // camioneta, furgon, camion-34, camion-pesado
+  estimatedVolume String? // cantidad estimada de pedidos o bultos
+  frequency       String // unico, diario, semanal, mensual
+  origin          String
+  destination     String
+  description     String
+
+  status String  @default("PENDING") // PENDING, CONTACTED, QUOTED, WON, LOST
+  notes  String?
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  name    String
+  email   String
+  phone   String?
+  subject String
+  message String
+  status  String  @default("UNREAD") // UNREAD, READ, REPLIED
+}
+
+model JobApplication {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  firstName   String
+  lastName    String
+  email       String
+  phone       String
+  position    String // conductor-a2, conductor-a4, conductor-a5, peoneta, operador-logistico, ejecutivo
+  experience  String?
+  licenseType String?
+  cvUrl       String?
+  message     String?
+  status      String  @default("PENDING")
+}
+
+model TrackingOrder {
+  id           String   @id @default(cuid())
+  trackingCode String   @unique // e.g. DAS-89214
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  clientName        String
+  senderCompany     String
+  recipientName     String
+  origin            String
+  destination       String
+  serviceType       String
+  currentStatus     String // RECIBIDO, PREPARANDO, EN_RUTA, EN_REPARTO, ENTREGADO, INCIDENCIA
+  currentLocation   String?
+  estimatedDelivery DateTime?
+  deliveredAt       DateTime?
+
+  events TrackingEvent[]
+}
+
+model TrackingEvent {
+  id      String        @id @default(cuid())
+  orderId String
+  order   TrackingOrder @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  timestamp   DateTime @default(now())
+  status      String
+  title       String
+  description String
+  location    String
+}
