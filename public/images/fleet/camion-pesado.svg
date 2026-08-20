@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" fill="none">
+  <defs>
+    <linearGradient id="heavyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+    <linearGradient id="heavyCabin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F2C59" />
+      <stop offset="100%" stop-color="#081B38" />
+    </linearGradient>
+    <linearGradient id="cyanStripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00C29A" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <filter id="heavyShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0F2C59" flood-opacity="0.22" />
+    </filter>
+  </defs>
+
+  <!-- Background container -->
+  <rect width="600" height="360" rx="24" fill="#0F2C59" opacity="0.04" />
+  <circle cx="490" cy="110" r="150" fill="#E2E8F0" opacity="0.5" />
+
+  <!-- Road / Shadow Line -->
+  <ellipse cx="300" cy="312" rx="270" ry="18" fill="#0F2C59" opacity="0.25" />
+  <path d="M30 312 L570 312" stroke="#CBD5E1" stroke-width="3" stroke-dasharray="12 8" />
+
+  <!-- Camión Pesado (8 - 12 Toneladas) -->
+  <g filter="url(#heavyShadow)">
+    <!-- Heavy Chassis -->
+    <rect x="130" y="246" width="410" height="14" rx="2" fill="#1E293B" />
+    <rect x="220" y="238" width="55" height="22" rx="3" fill="#334155" /> <!-- Giant Fuel Tank -->
+    <circle cx="228" cy="249" r="3" fill="#64748B" />
+
+    <!-- Massive Cargo Box (45 m³) -->
+    <rect x="200" y="65" width="340" height="182" rx="6" fill="url(#heavyGrad)" stroke="#CBD5E1" stroke-width="2" />
+    
+    <!-- Heavy Frame Borders -->
+    <rect x="198" y="63" width="344" height="10" rx="2" fill="#64748B" />
+    <rect x="198" y="63" width="10" height="184" rx="2" fill="#64748B" />
+    <rect x="532" y="63" width="10" height="184" rx="2" fill="#64748B" />
+
+    <!-- Branding -->
+    <rect x="208" y="115" width="324" height="52" fill="#0F2C59" />
+    <rect x="208" y="167" width="324" height="10" fill="url(#cyanStripe)" />
+    <text x="230" y="152" font-family="system-ui, sans-serif" font-size="28" font-weight="900" letter-spacing="2" fill="#FFFFFF">DASAI</text>
+    <text x="340" y="152" font-family="system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#FF8A3D">TRANSPORTE PESADO</text>
+
+    <!-- Side Inspection Door -->
+    <rect x="340" y="80" width="60" height="160" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4 4" />
+    
+    <!-- Reflective Stripes Standard -->
+    <g transform="translate(208, 236)">
+      <rect width="324" height="7" fill="#F59E0B" stroke="#B45309" stroke-width="0.5" stroke-dasharray="20 20" />
+    </g>
+
+    <!-- Heavy Cabin Front (Sleeper High-Cab) -->
+    <path d="M75 246 L70 180 L88 95 L188 90 L194 246 Z" fill="url(#heavyCabin)" stroke="#081B38" stroke-width="2" />
+    
+    <!-- Panoramic Windshield -->
+    <path d="M92 102 L178 98 L175 165 L80 165 Z" fill="#93C5FD" opacity="0.9" />
+    <path d="M105 106 L174 104 L174 160 L92 160 Z" fill="#BFDBFE" />
+
+    <!-- Top Sun Visor with Clearance Lights -->
+    <path d="M85 92 L185 88 L185 102 L80 106 Z" fill="#FF6B00" />
+    <circle cx="110" cy="97" r="2.5" fill="#FEF08A" />
+    <circle cx="135" cy="96" r="2.5" fill="#FEF08A" />
+    <circle cx="160" cy="95" r="2.5" fill="#FEF08A" />
+
+    <!-- Front Heavy Grille with Chrome Bars -->
+    <rect x="70" y="180" width="14" height="50" rx="3" fill="#1E293B" />
+    <line x1="72" y1="190" x2="82" y2="190" stroke="#CBD5E1" stroke-width="2" />
+    <line x1="72" y1="200" x2="82" y2="200" stroke="#CBD5E1" stroke-width="2" />
+    <line x1="72" y1="210" x2="82" y2="210" stroke="#CBD5E1" stroke-width="2" />
+    <line x1="72" y1="220" x2="82" y2="220" stroke="#CBD5E1" stroke-width="2" />
+
+    <!-- Dual Heavy Headlights -->
+    <rect x="69" y="215" width="8" height="24" rx="2" fill="#FEF08A" stroke="#EAB308" />
+
+    <!-- Heavy Front Bumper -->
+    <rect x="64" y="240" width="26" height="18" rx="3" fill="#0F172A" />
+
+    <!-- Massive Axles & Triple Wheels -->
+    <g transform="translate(140, 255)">
+      <circle cx="0" cy="0" r="38" fill="#1E293B" />
+      <circle cx="0" cy="0" r="24" fill="#64748B" />
+      <circle cx="0" cy="0" r="14" fill="#E2E8F0" />
+      <circle cx="0" cy="0" r="6" fill="#0F2C59" />
+    </g>
+
+    <!-- Rear Bogie Axle 1 -->
+    <g transform="translate(430, 255)">
+      <circle cx="0" cy="0" r="38" fill="#1E293B" />
+      <circle cx="0" cy="0" r="24" fill="#64748B" />
+      <circle cx="0" cy="0" r="14" fill="#E2E8F0" />
+      <circle cx="0" cy="0" r="6" fill="#0F2C59" />
+    </g>
+
+    <!-- Rear Bogie Axle 2 -->
+    <g transform="translate(490, 255)">
+      <circle cx="0" cy="0" r="38" fill="#1E293B" />
+      <circle cx="0" cy="0" r="24" fill="#64748B" />
+      <circle cx="0" cy="0" r="14" fill="#E2E8F0" />
+      <circle cx="0" cy="0" r="6" fill="#0F2C59" />
+    </g>
+  </g>
+
+  <!-- Spec Badges Overlay -->
+  <g transform="translate(40, 30)">
+    <rect width="155" height="34" rx="8" fill="#0F2C59" />
+    <text x="14" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">10.500 KG</text>
+    <text x="80" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="500" fill="#93C5FD">| 45.0 m³</text>
+  </g>
+  <g transform="translate(400, 30)">
+    <rect width="160" height="34" rx="8" fill="#FFFFFF" stroke="#E2E8F0" />
+    <circle cx="18" cy="17" r="5" fill="#00C29A" />
+    <text x="30" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0F2C59">14 PALLETS STD</text>
+  </g>
+</svg>

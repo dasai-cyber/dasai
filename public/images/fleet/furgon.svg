@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" fill="none">
+  <defs>
+    <linearGradient id="furgonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+    <linearGradient id="furgonCabin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F2C59" />
+      <stop offset="100%" stop-color="#081B38" />
+    </linearGradient>
+    <linearGradient id="orangeBar" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#FF9E00" />
+    </linearGradient>
+    <filter id="furgonShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#0F2C59" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Background decorative container -->
+  <rect width="600" height="360" rx="24" fill="#F8FAFC" />
+  <circle cx="500" cy="110" r="130" fill="#E2E8F0" opacity="0.4" />
+  <circle cx="80" cy="240" r="70" fill="#3B82F6" opacity="0.06" />
+
+  <!-- Road / Shadow Line -->
+  <ellipse cx="300" cy="308" rx="250" ry="18" fill="#0F2C59" opacity="0.18" />
+  <path d="M50 308 L550 308" stroke="#CBD5E1" stroke-width="3" stroke-dasharray="12 8" />
+
+  <!-- Furgón Utilitario 10.5 m³ -->
+  <g filter="url(#furgonShadow)">
+    <!-- Main Box Body -->
+    <path d="M110 215 L145 120 L230 115 L500 115 L505 252 L110 252 Z" fill="url(#furgonGrad)" stroke="#CBD5E1" stroke-width="2" />
+    
+    <!-- Cabin Accent -->
+    <path d="M110 215 L145 120 L230 115 L230 252 L110 252 Z" fill="url(#furgonCabin)" />
+    
+    <!-- Windshield -->
+    <path d="M148 128 L218 128 L218 185 L135 185 Z" fill="#93C5FD" opacity="0.85" />
+    <path d="M165 132 L215 132 L215 178 L152 178 Z" fill="#BFDBFE" />
+
+    <!-- High Roof Extender -->
+    <path d="M228 115 L498 115 L500 135 L228 135 Z" fill="#E2E8F0" />
+
+    <!-- Corporate Livery on Van Body -->
+    <rect x="230" y="165" width="270" height="34" fill="#0F2C59" />
+    <rect x="230" y="199" width="270" height="8" fill="url(#orangeBar)" />
+    <text x="248" y="188" font-family="system-ui, sans-serif" font-size="17" font-weight="900" letter-spacing="1.5" fill="#FFFFFF">DASAI</text>
+    <text x="315" y="188" font-family="system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#00C29A">DISTRIBUCIÓN</text>
+
+    <!-- Side Cargo Sliding Door -->
+    <rect x="245" y="125" width="105" height="122" rx="2" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="6 4" />
+    <rect x="335" y="185" width="10" height="18" rx="2" fill="#475569" />
+
+    <!-- Rear Doors Split Line -->
+    <line x1="495" y1="115" x2="495" y2="252" stroke="#64748B" stroke-width="2" />
+
+    <!-- Lights -->
+    <path d="M110 215 L125 215 L125 235 L112 235 Z" fill="#FEF08A" stroke="#EAB308" />
+    <rect x="498" y="175" width="6" height="34" rx="2" fill="#EF4444" />
+
+    <!-- Bumpers -->
+    <rect x="102" y="235" width="22" height="18" rx="4" fill="#334155" />
+    <rect x="495" y="242" width="14" height="14" rx="2" fill="#334155" />
+
+    <!-- Wheels (Large utility) -->
+    <g transform="translate(175, 252)">
+      <circle cx="0" cy="0" r="36" fill="#1E293B" />
+      <circle cx="0" cy="0" r="24" fill="#64748B" />
+      <circle cx="0" cy="0" r="15" fill="#E2E8F0" />
+      <circle cx="0" cy="0" r="6" fill="#0F2C59" />
+    </g>
+
+    <g transform="translate(435, 252)">
+      <circle cx="0" cy="0" r="36" fill="#1E293B" />
+      <circle cx="0" cy="0" r="24" fill="#64748B" />
+      <circle cx="0" cy="0" r="15" fill="#E2E8F0" />
+      <circle cx="0" cy="0" r="6" fill="#0F2C59" />
+    </g>
+  </g>
+
+  <!-- Spec Badges Overlay -->
+  <g transform="translate(40, 35)">
+    <rect width="140" height="34" rx="8" fill="#0F2C59" />
+    <text x="14" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">1.600 KG</text>
+    <text x="75" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="500" fill="#93C5FD">| 10.5 m³</text>
+  </g>
+  <g transform="translate(405, 35)">
+    <rect width="155" height="34" rx="8" fill="#FFFFFF" stroke="#E2E8F0" />
+    <circle cx="18" cy="17" r="5" fill="#FF6B00" />
+    <text x="30" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0F2C59">3 PALLETS STD</text>
+  </g>
+</svg>

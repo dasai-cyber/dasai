@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" fill="none">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F1F5F9" />
+    </linearGradient>
+    <linearGradient id="truckCabin" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F2C59" />
+      <stop offset="100%" stop-color="#081B38" />
+    </linearGradient>
+    <linearGradient id="amberStripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#FFA800" />
+    </linearGradient>
+    <filter id="truckShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0F2C59" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <!-- Background container -->
+  <rect width="600" height="360" rx="24" fill="#F1F5F9" />
+  <circle cx="490" cy="100" r="140" fill="#E2E8F0" opacity="0.5" />
+  <circle cx="90" cy="250" r="70" fill="#FF6B00" opacity="0.06" />
+
+  <!-- Road / Shadow Line -->
+  <ellipse cx="300" cy="310" rx="260" ry="18" fill="#0F2C59" opacity="0.22" />
+  <path d="M40 310 L560 310" stroke="#CBD5E1" stroke-width="3" stroke-dasharray="12 8" />
+
+  <!-- Camión 3/4 (3.5 - 5 Ton) -->
+  <g filter="url(#truckShadow)">
+    <!-- Chassis Rails -->
+    <rect x="130" y="245" width="380" height="12" rx="2" fill="#334155" />
+    <rect x="230" y="240" width="40" height="18" rx="2" fill="#1E293B" /> <!-- Fuel Tank -->
+    <rect x="360" y="242" width="30" height="16" rx="2" fill="#475569" /> <!-- Toolbox -->
+
+    <!-- Cargo Box (Furgón Paquetero Aluminio) -->
+    <rect x="210" y="85" width="300" height="160" rx="6" fill="url(#boxGrad)" stroke="#CBD5E1" stroke-width="2" />
+    
+    <!-- Top & Corner Reinforcements -->
+    <rect x="208" y="83" width="304" height="8" rx="2" fill="#94A3B8" />
+    <rect x="208" y="83" width="8" height="162" rx="2" fill="#94A3B8" />
+    <rect x="504" y="83" width="8" height="162" rx="2" fill="#94A3B8" />
+
+    <!-- Corporate Branding on Cargo Box -->
+    <rect x="216" y="130" width="288" height="42" fill="#0F2C59" />
+    <rect x="216" y="172" width="288" height="8" fill="url(#amberStripe)" />
+    <text x="236" y="158" font-family="system-ui, sans-serif" font-size="22" font-weight="900" letter-spacing="2" fill="#FFFFFF">DASAI</text>
+    <text x="325" y="158" font-family="system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="2" fill="#00C29A">CARGA &amp; DISTRIBUCIÓN</text>
+
+    <!-- Reflective Stripes (Norma Chilena) -->
+    <g transform="translate(216, 235)">
+      <rect width="288" height="6" fill="#F59E0B" stroke="#B45309" stroke-width="0.5" stroke-dasharray="16 16" />
+    </g>
+
+    <!-- Modern Forward-Control Cabin -->
+    <!-- Cabin Base -->
+    <path d="M100 245 L95 190 L115 130 L195 125 L200 245 Z" fill="url(#truckCabin)" stroke="#081B38" stroke-width="1.5" />
+    
+    <!-- Windshield -->
+    <path d="M118 135 L190 132 L188 185 L106 185 Z" fill="#93C5FD" opacity="0.9" />
+    <!-- Side Window -->
+    <path d="M135 140 L185 138 L185 180 L118 180 Z" fill="#BFDBFE" />
+
+    <!-- Aerodynamic Roof Spoiler / Deflector -->
+    <path d="M115 130 L208 85 L208 125 L195 125 Z" fill="#0F2C59" />
+
+    <!-- Grille & Front Details -->
+    <rect x="95" y="200" width="12" height="36" rx="2" fill="#1E293B" />
+    <line x1="97" y1="208" x2="105" y2="208" stroke="#64748B" stroke-width="1.5" />
+    <line x1="97" y1="216" x2="105" y2="216" stroke="#64748B" stroke-width="1.5" />
+    <line x1="97" y1="224" x2="105" y2="224" stroke="#64748B" stroke-width="1.5" />
+
+    <!-- Side Mirror -->
+    <path d="M125 150 L108 152 L108 175 L125 170 Z" fill="#334155" />
+
+    <!-- Headlight -->
+    <rect x="94" y="222" width="8" height="18" rx="2" fill="#FEF08A" stroke="#EAB308" />
+
+    <!-- Front Bumper -->
+    <rect x="90" y="240" width="22" height="16" rx="3" fill="#1E293B" />
+
+    <!-- Mudguards -->
+    <path d="M125 250 A 28 28 0 0 1 185 250 Z" fill="#334155" />
+    <path d="M410 250 A 30 30 0 0 1 490 250 Z" fill="#334155" />
+
+    <!-- Front Wheel -->
+    <g transform="translate(155, 255)">
+      <circle cx="0" cy="0" r="34" fill="#1E293B" />
+      <circle cx="0" cy="0" r="22" fill="#64748B" />
+      <circle cx="0" cy="0" r="12" fill="#CBD5E1" />
+      <circle cx="0" cy="0" r="5" fill="#0F2C59" />
+    </g>
+
+    <!-- Dual Rear Wheels -->
+    <g transform="translate(435, 255)">
+      <circle cx="0" cy="0" r="36" fill="#1E293B" />
+      <circle cx="0" cy="0" r="23" fill="#64748B" />
+      <circle cx="0" cy="0" r="14" fill="#CBD5E1" />
+      <circle cx="0" cy="0" r="6" fill="#0F2C59" />
+    </g>
+    <g transform="translate(475, 255)">
+      <circle cx="0" cy="0" r="36" fill="#1E293B" />
+      <circle cx="0" cy="0" r="23" fill="#64748B" />
+      <circle cx="0" cy="0" r="14" fill="#CBD5E1" />
+      <circle cx="0" cy="0" r="6" fill="#0F2C59" />
+    </g>
+  </g>
+
+  <!-- Spec Badges Overlay -->
+  <g transform="translate(40, 35)">
+    <rect width="145" height="34" rx="8" fill="#0F2C59" />
+    <text x="14" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">4.500 KG</text>
+    <text x="75" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="500" fill="#93C5FD">| 22.0 m³</text>
+  </g>
+  <g transform="translate(415, 35)">
+    <rect width="145" height="34" rx="8" fill="#FFFFFF" stroke="#E2E8F0" />
+    <circle cx="18" cy="17" r="5" fill="#00C29A" />
+    <text x="30" y="22" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#0F2C59">6 PALLETS STD</text>
+  </g>
+</svg>

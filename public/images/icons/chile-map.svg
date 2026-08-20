@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" fill="none">
+  <defs>
+    <linearGradient id="chileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2C59" />
+      <stop offset="100%" stop-color="#1B4482" />
+    </linearGradient>
+    <filter id="hubGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="500" height="700" rx="24" fill="#0B132B" />
+
+  <!-- Grid mesh lines -->
+  <g opacity="0.1" stroke="#38BDF8" stroke-width="1">
+    <line x1="50" y1="0" x2="50" y2="700" />
+    <line x1="150" y1="0" x2="150" y2="700" />
+    <line x1="250" y1="0" x2="250" y2="700" />
+    <line x1="350" y1="0" x2="350" y2="700" />
+    <line x1="450" y1="0" x2="450" y2="700" />
+    <line x1="0" y1="100" x2="500" y2="100" />
+    <line x1="0" y1="250" x2="500" y2="250" />
+    <line x1="0" y1="400" x2="500" y2="400" />
+    <line x1="0" y1="550" x2="500" y2="550" />
+  </g>
+
+  <!-- Stylized Geometric Spine of Central-South Chile -->
+  <path d="M220 50 L240 120 L225 190 L245 270 L215 360 L230 460 L195 560 L220 650" fill="none" stroke="#1E293B" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Active Route Ribbon (Corredor Logístico Central) -->
+  <path d="M220 160 L240 230 L225 310 L245 390 L215 470 L230 540" fill="none" stroke="url(#chileGrad)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M220 160 L240 230 L225 310 L245 390 L215 470 L230 540" fill="none" stroke="#00C29A" stroke-width="4" stroke-dasharray="8 6" />
+
+  <!-- HUB 1: Valparaíso / V Región -->
+  <g transform="translate(195, 230)" filter="url(#hubGlow)">
+    <circle cx="0" cy="0" r="16" fill="#38BDF8" fill-opacity="0.25" />
+    <circle cx="0" cy="0" r="7" fill="#38BDF8" />
+    <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+    <!-- Label -->
+    <rect x="-140" y="-14" width="130" height="28" rx="6" fill="#0F2C59" stroke="#38BDF8" stroke-width="1" />
+    <text x="-130" y="4" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">V REG. VALPARAÍSO</text>
+  </g>
+
+  <!-- HUB 2: Santiago / RM (Main Center) -->
+  <g transform="translate(240, 270)" filter="url(#hubGlow)">
+    <circle cx="0" cy="0" r="24" fill="#FF6B00" fill-opacity="0.3" />
+    <circle cx="0" cy="0" r="11" fill="#FF6B00" />
+    <circle cx="0" cy="0" r="4" fill="#FFFFFF" />
+    <!-- Label Box -->
+    <rect x="18" y="-18" width="185" height="38" rx="8" fill="#FF6B00" />
+    <text x="28" y="-1" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#FFFFFF">CD CENTRAL PUDAHUEL</text>
+    <text x="28" y="13" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#0F2C59">Región Metropolitana • Hub 24/7</text>
+  </g>
+
+  <!-- HUB 3: O'Higgins / Rancagua -->
+  <g transform="translate(230, 340)" filter="url(#hubGlow)">
+    <circle cx="0" cy="0" r="16" fill="#00C29A" fill-opacity="0.25" />
+    <circle cx="0" cy="0" r="7" fill="#00C29A" />
+    <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+    <rect x="16" y="-14" width="145" height="28" rx="6" fill="#0F2C59" stroke="#00C29A" stroke-width="1" />
+    <text x="26" y="4" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">VI REG. O'HIGGINS</text>
+  </g>
+
+  <!-- HUB 4: Maule / Talca -->
+  <g transform="translate(240, 420)" filter="url(#hubGlow)">
+    <circle cx="0" cy="0" r="16" fill="#00C29A" fill-opacity="0.25" />
+    <circle cx="0" cy="0" r="7" fill="#00C29A" />
+    <circle cx="0" cy="0" r="3" fill="#FFFFFF" />
+    <rect x="-130" y="-14" width="120" height="28" rx="6" fill="#0F2C59" stroke="#00C29A" stroke-width="1" />
+    <text x="-120" y="4" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">VII REG. MAULE</text>
+  </g>
+
+  <!-- HUB 5: Biobío / Concepción -->
+  <g transform="translate(210, 510)" filter="url(#hubGlow)">
+    <circle cx="0" cy="0" r="18" fill="#38BDF8" fill-opacity="0.3" />
+    <circle cx="0" cy="0" r="8" fill="#38BDF8" />
+    <circle cx="0" cy="0" r="3.5" fill="#FFFFFF" />
+    <rect x="18" y="-16" width="165" height="32" rx="6" fill="#0F2C59" stroke="#38BDF8" stroke-width="1" />
+    <text x="28" y="4" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">VIII REG. BIOBÍO (Hub Sur)</text>
+  </g>
+
+  <!-- Legend Overlay -->
+  <g transform="translate(40, 600)">
+    <rect width="420" height="60" rx="12" fill="#0F2C59" fill-opacity="0.8" stroke="#334155" />
+    <circle cx="25" cy="30" r="6" fill="#FF6B00" />
+    <text x="38" y="34" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">Centro Logístico Principal</text>
+    <circle cx="195" cy="30" r="6" fill="#00C29A" />
+    <text x="208" y="34" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">Hubs Regionales Activos</text>
+    <circle cx="365" cy="30" r="6" fill="#38BDF8" />
+    <text x="378" y="34" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">Corredor Troncal</text>
+  </g>
+</svg>
