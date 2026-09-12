@@ -1,62 +1,110 @@
 import { NextResponse } from "next/server";
-import { getTransporter, getRecipients } from "@/lib/mailer";
+import nodemailer from "nodemailer";
+import { getRecipients } from "@/lib/mailer";
 
 export async function GET() {
-  const host = (process.env.SMTP_HOST || "smtp.zoho.com").trim();
-  const port = Number(process.env.SMTP_PORT) || 465;
   const user = (process.env.SMTP_USER || process.env.ZOHO_EMAIL || "contacto@dasai.cl").trim();
-  const hasPass = Boolean(process.env.SMTP_PASS || process.env.ZOHO_PASSWORD);
+  const rawPass = process.env.SMTP_PASS || process.env.ZOHO_PASSWORD || "";
+  const pass = rawPass.replace(/\s+/g, "").trim();
   const recipients = getRecipients();
 
-  const transporter = getTransporter();
-
-  if (!transporter) {
+  if (!pass) {
     return NextResponse.json(
       {
         success: false,
-        error: "SMTP_PASS no está configurado en las variables de entorno de Vercel.",
-        config: { host, port, user, hasPass, recipients },
+        error: "Falta la variable SMTP_PASS en Vercel.",
+        help: "Debes agregar la contraseña de aplicación de Zoho en Vercel.",
       },
       { status: 500 }
     );
   }
 
-  try {
-    // 1. Verificar autenticación con el servidor Zoho
-    await transporter.verify();
+  // Lista de combinaciones de servidores Zoho a probar automáticamente
+  const candidates = [
+    { host: "smtp.zoho.com", port: 465, secure: true, name: "Zoho Global SSL (465)" },
+    { host: "smtppro.zoho.com", port: 465, secure: true, name: "Zoho Workplace SSL (465)" },
+    { host: "smtp.zoho.com", port: 587, secure: false, name: "Zoho Global TLS (587)" },
+  ];
 
-    // 2. Enviar correo de prueba
-    const info = await transporter.sendMail({
-      from: `"Diagnóstico DASAI" <${user}>`,
-      to: recipients,
-      subject: "✅ Prueba de Conexión Exitosa — Zoho Mail & DASAI",
-      text: `El sistema de correos de DASAI está funcionando al 100%.\n\nServidor: ${host}\nUsuario: ${user}\nDestinatarios: ${recipients.join(", ")}`,
-      html: `
-        <div style="font-family: sans-serif; padding: 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; color: #166534;">
-          <h2 style="margin: 0 0 10px 0;">🎉 ¡Conexión con Zoho Mail Exitosa!</h2>
-          <p>Tu sitio web corporativo <strong>dasai.cl</strong> ya puede enviar correos directamente a <strong>${recipients.join(", ")}</strong>.</p>
-          <hr style="border: 0; border-top: 1px solid #bbf7d0; margin: 15px 0;">
-          <p style="font-size: 12px; color: #15803d;">Enviado desde Vercel usando ${host}:${port} como ${user}.</p>
-        </div>
-      `,
-    });
+  const attempts = [];
 
-    return NextResponse.json({
-      success: true,
-      message: "¡Correo de prueba enviado con éxito! Revisa tu bandeja de entrada.",
-      messageId: info.messageId,
-      config: { host, port, user, recipients },
-    });
-  } catch (error: any) {
-    return NextResponse.json(
-      {
-        success: false,
-        error: error.message || "Error al conectar con Zoho Mail",
-        code: error.code || null,
-        response: error.response || null,
-        config: { host, port, user, hasPass, recipients },
-      },
-      { status: 500 }
-    );
+  for (const candidate of candidates) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: candidate.host,
+        port: candidate.port,
+        secure: candidate.secure,
+        auth: {
+          user,
+          pass,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        },
+        connectionTimeout: 8000,
+      });
+
+      await transporter.verify();
+
+      // Si verify pasa, enviar correo de prueba
+      const info = await transporter.sendMail({
+        from: `"Diagnóstico DASAI" <${user}>`,
+        to: recipients,
+        subject: "✅ ¡Correo de Prueba DASAI Funcionando!",
+        text: `El sistema de correos está conectado con éxito a Zoho Mail.\nServidor: ${candidate.host}:${candidate.port}\nUsuario emisor: ${user}\nDestinatarios: ${recipients.join(", ")}`,
+        html: `
+          <div style="font-family: sans-serif; padding: 24px; background: #0f172a; color: #f8fafc; border-radius: 12px;">
+            <h2 style="color: #4ade80; margin-top: 0;">🎉 ¡Conexión con Zoho Mail Exitosa!</h2>
+            <p>Los formularios de tu web <strong>dasai.cl</strong> ya pueden enviar correos en vivo.</p>
+            <p><strong>Servidor utilizado:</strong> ${candidate.host} (Puerto ${candidate.port})</p>
+            <p><strong>Remitente autenticado:</strong> ${user}</p>
+            <p><strong>Destinatarios:</strong> ${recipients.join(", ")}</p>
+          </div>
+        `,
+      });
+
+      return NextResponse.json({
+        success: true,
+        message: `¡Conexión exitosa a través de ${candidate.host}! Revisa tu bandeja de entrada en Zoho.`,
+        successfulServer: `${candidate.host}:${candidate.port}`,
+        messageId: info.messageId,
+        user,
+        recipients,
+      });
+    } catch (err: any) {
+      attempts.push({
+        server: `${candidate.host}:${candidate.port}`,
+        error: err.message,
+        code: err.code || null,
+        response: err.response || null,
+      });
+    }
   }
+
+  // Si todas fallaron con 535
+  const isAuthError = attempts.some((a) => a.error?.includes("535") || a.code === "EAUTH");
+
+  return NextResponse.json(
+    {
+      success: false,
+      reason: isAuthError ? "AUTH_FAILED" : "CONNECTION_FAILED",
+      error: isAuthError
+        ? "Zoho rechazó la contraseña (535 Authentication Failed). La contraseña ingresada no corresponde al usuario " + user + "."
+        : "No fue posible conectar con los servidores SMTP de Zoho.",
+      diagnostics: {
+        authenticatedUser: user,
+        passwordLength: pass.length,
+        recipients,
+        serverAttempts: attempts,
+      },
+      howToFix: isAuthError
+        ? [
+            `1. Verifica con qué usuario de Zoho generaste la 'Contraseña de Aplicación': si la generaste con la cuenta de Viviana (viviana.silva@dasai.cl), debes cambiar en Vercel la variable SMTP_USER a 'viviana.silva@dasai.cl'.`,
+            `2. Si quieres que el usuario sea 'contacto@dasai.cl', debes iniciar sesión en Zoho específicamente como 'contacto@dasai.cl' y generar la contraseña de aplicación desde esa cuenta.`,
+            `3. Copia las 16 letras de la contraseña de aplicación generada en Zoho y pégala en Vercel en la variable SMTP_PASS.`,
+          ]
+        : ["Verifica tu conexión y que el acceso SMTP esté habilitado en Zoho."],
+    },
+    { status: 500 }
+  );
 }
