@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
@@ -113,7 +113,7 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
             ],
           },
         ]);
-        setCurrentStep(1);
+        setCurrentStep(0);
       }, 500);
     }
   }, [isOpen]);
@@ -209,9 +209,9 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         },
       ]);
 
-      // Move to step 17
-      setCurrentStep(17);
-      botReply("17. ¿Cuál es tu nombre completo?", undefined, "text", "Ej: Juan Pérez Morales");
+      // Move to step 14
+      setCurrentStep(14);
+      botReply("14. ¿Cuál es tu nombre completo?", undefined, "text", "Ej: Juan Pérez Morales");
     };
 
     reader.readAsDataURL(file);
@@ -219,11 +219,11 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
 
   const processStepFlow = (value: string) => {
     switch (currentStep) {
-      case 1: // Initial menu
+      case 0: // Welcome menu
         if (value.includes("Postular como Chofer")) {
-          setCurrentStep(3);
+          setCurrentStep(1);
           botReply(
-            "Excelente. Vamos a realizar un breve cuestionario para conocer tu perfil y flota.\n\n3. ¿Tienes experiencia en el rubro del transporte?",
+            "Excelente. Vamos a realizar un breve cuestionario para conocer tu perfil y vehículo.\n\n1. ¿Tienes experiencia en el rubro del transporte?",
             ["Sí", "No"]
           );
         } else if (value.includes("Cotizar")) {
@@ -246,10 +246,10 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         }
         break;
 
-      case 3: // ¿Tienes experiencia en el rubro del transporte?
+      case 1: // 1. ¿Tienes experiencia en el rubro del transporte?
         setAnswers((prev) => ({ ...prev, experienceTransport: value }));
-        setCurrentStep(4);
-        botReply("4. ¿Cuántos años de experiencia tienes?", [
+        setCurrentStep(2);
+        botReply("2. ¿Cuántos años de experiencia tienes?", [
           "Sin experiencia",
           "Menos de 1 año",
           "1 a 3 años",
@@ -257,10 +257,10 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         ]);
         break;
 
-      case 4: // ¿Cuántos años de experiencia tienes?
+      case 2: // 2. ¿Cuántos años de experiencia tienes?
         setAnswers((prev) => ({ ...prev, yearsExperience: value }));
-        setCurrentStep(5);
-        botReply("5. Si postulas como conductor/a, ¿qué licencia de conducir tienes?", [
+        setCurrentStep(3);
+        botReply("3. Si postulas como conductor/a, ¿qué licencia de conducir tienes?", [
           "Clase B",
           "Clase A2",
           "Clase A4",
@@ -270,19 +270,19 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         ]);
         break;
 
-      case 5: // ¿Qué licencia de conducir tienes?
+      case 3: // 3. ¿Qué licencia de conducir tienes?
         setAnswers((prev) => ({ ...prev, licenseType: value }));
-        setCurrentStep(6);
+        setCurrentStep(4);
         botReply(
-          "6. ¿Tienes experiencia conduciendo vehículos de transporte de carga o pasajeros?",
+          "4. ¿Tienes experiencia conduciendo vehículos de transporte de carga o pasajeros?",
           ["Sí", "No"]
         );
         break;
 
-      case 6: // ¿Tienes experiencia conduciendo vehículos de carga o pasajeros?
+      case 4: // 4. ¿Tienes experiencia conduciendo vehículos de transporte de carga o pasajeros?
         setAnswers((prev) => ({ ...prev, drivingExperienceCargoPassengers: value }));
-        setCurrentStep(7);
-        botReply("7. ¿Qué tipo de vehículo de transporte tienes? 🚚", [
+        setCurrentStep(5);
+        botReply("5. ¿Qué tipo de vehículo de transporte tienes? 🚚", [
           "Camioneta",
           "Furgón",
           "Camión 3/4",
@@ -295,7 +295,7 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         ]);
         break;
 
-      case 7: // ¿Qué tipo de vehículo de transporte tienes?
+      case 5: // 5. ¿Qué tipo de vehículo de transporte tienes?
         setAnswers((prev) => ({ ...prev, vehicleType: value }));
         if (value === "No tengo vehículo propio") {
           setAnswers((prev) => ({
@@ -304,11 +304,11 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
             vehicleYear: "N/A",
             vehicleDocValid: "No aplica",
           }));
-          setCurrentStep(11);
-          botReply("11. ¿En qué comuna o ciudad resides?", undefined, "text", "Ej: Santiago, Pudahuel, Rancagua, etc.");
+          setCurrentStep(9);
+          botReply("9. ¿En qué comuna o ciudad resides?", undefined, "text", "Ej: Pudahuel, Santiago, Rancagua...");
         } else {
-          setCurrentStep(8);
-          botReply("8. ¿El vehículo es propio o de un tercero?", [
+          setCurrentStep(6);
+          botReply("6. ¿El vehículo es propio o de un tercero?", [
             "Propio",
             "De un tercero",
             "De una empresa",
@@ -317,42 +317,42 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         }
         break;
 
-      case 8: // ¿El vehículo es propio o de un tercero?
+      case 6: // 6. ¿El vehículo es propio o de un tercero?
         setAnswers((prev) => ({ ...prev, vehicleOwnership: value }));
-        setCurrentStep(9);
-        botReply("9. ¿Qué año es tu vehículo?", undefined, "text", "Ej: 2022");
+        setCurrentStep(7);
+        botReply("7. ¿Qué año es tu vehículo?", undefined, "text", "Ej: 2022");
         break;
 
-      case 9: // ¿Qué año es tu vehículo?
+      case 7: // 7. ¿Qué año es tu vehículo?
         setAnswers((prev) => ({ ...prev, vehicleYear: value }));
-        setCurrentStep(10);
-        botReply("10. ¿Tienes la documentación del vehículo vigente?", [
+        setCurrentStep(8);
+        botReply("8. ¿Tienes la documentación del vehículo vigente?", [
           "Sí",
           "No",
           "No aplica",
         ]);
         break;
 
-      case 10: // ¿Tienes la documentación del vehículo vigente?
+      case 8: // 8. ¿Tienes la documentación del vehículo vigente?
         setAnswers((prev) => ({ ...prev, vehicleDocValid: value }));
-        setCurrentStep(11);
-        botReply("11. ¿En qué comuna o ciudad resides?", undefined, "text", "Ej: Pudahuel, Maipú, San Bernardo...");
+        setCurrentStep(9);
+        botReply("9. ¿En qué comuna o ciudad resides?", undefined, "text", "Ej: Pudahuel, Maipú, San Bernardo, etc.");
         break;
 
-      case 11: // ¿En qué comuna o ciudad resides?
+      case 9: // 9. ¿En qué comuna o ciudad resides?
         setAnswers((prev) => ({ ...prev, communeCity: value }));
-        setCurrentStep(12);
-        botReply("12. ¿Tienes disponibilidad para trabajar en turnos?", [
+        setCurrentStep(10);
+        botReply("10. ¿Tienes disponibilidad para trabajar en turnos?", [
           "Sí",
           "No",
           "Depende del turno",
         ]);
         break;
 
-      case 12: // ¿Tienes disponibilidad para trabajar en turnos?
+      case 10: // 10. ¿Tienes disponibilidad para trabajar en turnos?
         setAnswers((prev) => ({ ...prev, shiftAvailability: value }));
-        setCurrentStep(13);
-        botReply("13. ¿Tienes disponibilidad para comenzar a trabajar?", [
+        setCurrentStep(11);
+        botReply("11. ¿Tienes disponibilidad para comenzar a trabajar?", [
           "Inmediatamente",
           "Dentro de una semana",
           "Dentro de un mes",
@@ -360,63 +360,63 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         ]);
         break;
 
-      case 13: // ¿Tienes disponibilidad para comenzar a trabajar?
+      case 11: // 11. ¿Tienes disponibilidad para comenzar a trabajar?
         setAnswers((prev) => ({ ...prev, startAvailability: value }));
-        setCurrentStep(15);
-        botReply("15. ¿Tienes tu currículum actualizado?", ["Sí", "No"]);
+        setCurrentStep(12);
+        botReply("12. ¿Tienes tu currículum actualizado?", ["Sí", "No"]);
         break;
 
-      case 15: // ¿Tienes tu currículum actualizado?
+      case 12: // 12. ¿Tienes tu currículum actualizado?
         setAnswers((prev) => ({ ...prev, cvUpdated: value }));
-        setCurrentStep(16);
+        setCurrentStep(13);
         botReply(
-          "16. Adjunta tu currículum vitae (opcional). 📄\nPuedes subirlo aquí o continuar y enviarlo más adelante.",
-          ["Omitir por ahora / Enviar después"],
+          "13. Adjunta tu currículum vitae. 📄\nPuedes subir tu archivo (PDF/Word) o presionar continuar para enviarlo después.",
+          ["Continuar sin adjuntar / Enviar después"],
           "file"
         );
         break;
 
-      case 16: // Adjuntar CV (skip)
-        setCurrentStep(17);
-        botReply("17. ¿Cuál es tu nombre completo?", undefined, "text", "Ej: Juan Carlos Morales");
+      case 13: // 13. Adjunta tu CV (skip/continue)
+        setCurrentStep(14);
+        botReply("14. ¿Cuál es tu nombre completo?", undefined, "text", "Ej: Juan Carlos Morales");
         break;
 
-      case 17: // ¿Cuál es tu nombre completo?
+      case 14: // 14. ¿Cuál es tu nombre completo?
         setAnswers((prev) => ({ ...prev, fullName: value }));
-        setCurrentStep(18);
-        botReply("18. ¿Cuál es tu número de teléfono de contacto?", undefined, "phone", "Ej: +56 9 8765 4321");
+        setCurrentStep(15);
+        botReply("15. ¿Cuál es tu número de teléfono?", undefined, "phone", "Ej: +56 9 8765 4321");
         break;
 
-      case 18: // ¿Cuál es tu número de teléfono?
+      case 15: // 15. ¿Cuál es tu número de teléfono?
         setAnswers((prev) => ({ ...prev, phone: value }));
-        setCurrentStep(19);
-        botReply("19. ¿Cuál es tu correo electrónico?", undefined, "email", "Ej: tu.nombre@gmail.com");
+        setCurrentStep(16);
+        botReply("16. ¿Cuál es tu correo electrónico?", undefined, "email", "Ej: tu.nombre@gmail.com");
         break;
 
-      case 19: // ¿Cuál es tu correo electrónico?
+      case 16: // 16. ¿Cuál es tu correo electrónico?
         setAnswers((prev) => ({ ...prev, email: value }));
-        setCurrentStep(20);
+        setCurrentStep(17);
         botReply(
-          "20. ¿Hay algo más que quieras contarnos sobre tu experiencia o disponibilidad?",
-          ["Ninguno / Omitir"],
+          "17. ¿Hay algo más que quieras contarnos sobre tu experiencia o disponibilidad?",
+          ["Omitir / Ninguno"],
           "text",
-          "Escribe aquí cualquier comentario adicional..."
+          "Escribe aquí cualquier detalle adicional..."
         );
         break;
 
-      case 20: // Comentarios adicionales
+      case 17: // 17. Comentarios adicionales
         setAnswers((prev) => ({
           ...prev,
-          additionalNotes: value === "Ninguno / Omitir" ? "" : value,
+          additionalNotes: value === "Omitir / Ninguno" ? "" : value,
         }));
-        setCurrentStep(21);
+        setCurrentStep(18);
         botReply(
           "📋 ¡Hemos completado todas las preguntas!\n\n¿Deseas que nuestro equipo de operaciones y RRHH de DASAI te contacte?",
           ["✅ Sí, contáctenme", "❌ No por ahora"]
         );
         break;
 
-      case 21: // Contact Decision
+      case 18: // Contact Decision
         if (value.includes("Sí") || value.includes("contáctenme")) {
           submitLead(true);
         } else {
@@ -498,7 +498,7 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
     setIsFinished(false);
     setInputText("");
     setTimeout(() => {
-      setCurrentStep(1);
+      setCurrentStep(0);
       botReply(
         "¡Hola de nuevo! 👋 ¿En qué te podemos ayudar?",
         [

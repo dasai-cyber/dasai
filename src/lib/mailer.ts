@@ -528,22 +528,22 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
         <div class="section-title">👤 1. Datos Personales y Contacto</div>
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">17. Nombre Completo</div>
+            <div class="field-label">14. Nombre Completo</div>
             <div class="field-value">${data.fullName}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">18. Teléfono / WhatsApp</div>
+            <div class="field-label">15. Teléfono / WhatsApp</div>
             <div class="field-value"><a href="tel:${data.phone}" style="color: #480CA8; text-decoration: none;">${data.phone}</a></div>
           </div>
         </div>
 
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">19. Correo Electrónico</div>
+            <div class="field-label">16. Correo Electrónico</div>
             <div class="field-value"><a href="mailto:${data.email}" style="color: #480CA8; text-decoration: none;">${data.email}</a></div>
           </div>
           <div class="field-card">
-            <div class="field-label">11. Comuna / Ciudad de Residencia</div>
+            <div class="field-label">9. Comuna / Ciudad de Residencia</div>
             <div class="field-value">${data.communeCity || "No especificada"}</div>
           </div>
         </div>
@@ -551,22 +551,22 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
         <div class="section-title">🚚 2. Experiencia y Licencia</div>
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">3. ¿Experiencia en transporte?</div>
+            <div class="field-label">1. ¿Exp. en transporte?</div>
             <div class="field-value">${data.experienceTransport || "N/A"}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">4. Años de Experiencia</div>
+            <div class="field-label">2. Años de Experiencia</div>
             <div class="field-value">${data.yearsExperience || "N/A"}</div>
           </div>
         </div>
 
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">5. Licencia de Conducir</div>
+            <div class="field-label">3. Licencia de Conducir</div>
             <div class="field-value" style="color: #480CA8;">${data.licenseType || "N/A"}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">6. ¿Exp. Carga / Pasajeros?</div>
+            <div class="field-label">4. ¿Exp. Carga / Pasajeros?</div>
             <div class="field-value">${data.drivingExperienceCargoPassengers || "N/A"}</div>
           </div>
         </div>
@@ -574,22 +574,22 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
         <div class="section-title">🚛 3. Vehículo y Documentación</div>
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">7. Tipo de Vehículo</div>
+            <div class="field-label">5. Tipo de Vehículo</div>
             <div class="field-value">${data.vehicleType || "No tiene vehículo propio"}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">8. Propiedad del Vehículo</div>
+            <div class="field-label">6. Propiedad del Vehículo</div>
             <div class="field-value">${data.vehicleOwnership || "N/A"}</div>
           </div>
         </div>
 
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">9. Año del Vehículo</div>
+            <div class="field-label">7. Año del Vehículo</div>
             <div class="field-value">${data.vehicleYear || "N/A"}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">10. Documentación Vigente</div>
+            <div class="field-label">8. Documentación Vigente</div>
             <div class="field-value">${data.vehicleDocValid || "N/A"}</div>
           </div>
         </div>
@@ -597,29 +597,29 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
         <div class="section-title">⏱️ 4. Disponibilidad y CV</div>
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">12. Disponibilidad Turnos</div>
+            <div class="field-label">10. Disponibilidad Turnos</div>
             <div class="field-value">${data.shiftAvailability || "N/A"}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">13. Fecha de Inicio</div>
+            <div class="field-label">11. Fecha de Inicio</div>
             <div class="field-value">${data.startAvailability || "N/A"}</div>
           </div>
         </div>
 
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">15. CV Actualizado</div>
+            <div class="field-label">12. CV Actualizado</div>
             <div class="field-value">${data.cvUpdated || "N/A"}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">16. Archivo CV Adjunto</div>
+            <div class="field-label">13. Archivo CV Adjunto</div>
             <div class="field-value">${data.cvFileName ? `📄 ${data.cvFileName} (Adjunto al correo)` : "No adjuntado en chat"}</div>
           </div>
         </div>
 
         ${data.additionalNotes ? `
         <div style="margin-top: 16px;">
-          <div class="field-label">20. Comentarios adicionales del candidato:</div>
+          <div class="field-label">17. Comentarios adicionales del postulante:</div>
           <div class="message-box">${data.additionalNotes.replace(/\n/g, "<br>")}</div>
         </div>
         ` : ""}
