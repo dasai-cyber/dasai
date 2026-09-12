@@ -461,18 +461,11 @@ export interface SendBotLeadParams {
   communeCity?: string;
   shiftAvailability?: string;
   startAvailability?: string;
-  cvUpdated?: string;
-  cvFileName?: string;
   fullName: string;
   phone: string;
   email: string;
   additionalNotes?: string;
   requestedContact: boolean;
-  rawAttachment?: {
-    filename: string;
-    content: string; // base64 string
-    contentType?: string;
-  };
 }
 
 export async function sendBotLeadNotification(data: SendBotLeadParams) {
@@ -513,7 +506,7 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
     <div class="container">
       <div class="header">
         <div class="badge">💬 Lead WhatsApp Bot DASAI</div>
-        <h1 class="title">Nuevo Prospecto Solicitó Contacto</h1>
+        <h1 class="title">Nuevo Postulante Chofer</h1>
         <p style="margin: 6px 0 0 0; font-size: 13px; opacity: 0.9;">${formattedDate}</p>
       </div>
       <div class="content">
@@ -528,18 +521,18 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
         <div class="section-title">👤 1. Datos Personales y Contacto</div>
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">14. Nombre Completo</div>
+            <div class="field-label">12. Nombre Completo</div>
             <div class="field-value">${data.fullName}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">15. Teléfono / WhatsApp</div>
+            <div class="field-label">13. Teléfono / WhatsApp</div>
             <div class="field-value"><a href="tel:${data.phone}" style="color: #480CA8; text-decoration: none;">${data.phone}</a></div>
           </div>
         </div>
 
         <div class="grid">
           <div class="field-card">
-            <div class="field-label">16. Correo Electrónico</div>
+            <div class="field-label">14. Correo Electrónico</div>
             <div class="field-value"><a href="mailto:${data.email}" style="color: #480CA8; text-decoration: none;">${data.email}</a></div>
           </div>
           <div class="field-card">
@@ -594,7 +587,7 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
           </div>
         </div>
 
-        <div class="section-title">⏱️ 4. Disponibilidad y CV</div>
+        <div class="section-title">⏱️ 4. Disponibilidad Operativa</div>
         <div class="grid">
           <div class="field-card">
             <div class="field-label">10. Disponibilidad Turnos</div>
@@ -606,20 +599,9 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
           </div>
         </div>
 
-        <div class="grid">
-          <div class="field-card">
-            <div class="field-label">12. CV Actualizado</div>
-            <div class="field-value">${data.cvUpdated || "N/A"}</div>
-          </div>
-          <div class="field-card">
-            <div class="field-label">13. Archivo CV Adjunto</div>
-            <div class="field-value">${data.cvFileName ? `📄 ${data.cvFileName} (Adjunto al correo)` : "No adjuntado en chat"}</div>
-          </div>
-        </div>
-
         ${data.additionalNotes ? `
         <div style="margin-top: 16px;">
-          <div class="field-label">17. Comentarios adicionales del postulante:</div>
+          <div class="field-label">15. Comentarios adicionales del postulante:</div>
           <div class="message-box">${data.additionalNotes.replace(/\n/g, "<br>")}</div>
         </div>
         ` : ""}
@@ -647,16 +629,6 @@ export async function sendBotLeadNotification(data: SendBotLeadParams) {
     html: htmlContent,
     text: `Nuevo lead del bot de WhatsApp en dasai.cl\n\nNombre: ${data.fullName}\nTeléfono: ${data.phone}\nCorreo: ${data.email}\nComuna: ${data.communeCity || "N/A"}\nLicencia: ${data.licenseType || "N/A"}\nExperiencia: ${data.yearsExperience || "N/A"}\nVehículo: ${data.vehicleType || "N/A"} (${data.vehicleYear || "N/A"})\nDisponibilidad: ${data.startAvailability || "N/A"}\nNotas: ${data.additionalNotes || "N/A"}`,
   };
-
-  if (data.rawAttachment && data.rawAttachment.content) {
-    mailOptions.attachments = [
-      {
-        filename: data.rawAttachment.filename,
-        content: Buffer.from(data.rawAttachment.content, "base64"),
-        contentType: data.rawAttachment.contentType || "application/pdf",
-      },
-    ];
-  }
 
   return await sendWithFallback(mailOptions);
 }

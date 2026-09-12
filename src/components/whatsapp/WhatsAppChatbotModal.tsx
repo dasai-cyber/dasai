@@ -5,14 +5,8 @@ import Image from "next/image";
 import {
   X,
   Send,
-  Upload,
-  Paperclip,
-  Check,
   CheckCheck,
-  Phone,
-  MessageCircle,
   RotateCcw,
-  Sparkles,
   ChevronRight,
   ShieldCheck,
 } from "lucide-react";
@@ -24,37 +18,26 @@ interface Message {
   text: string;
   timestamp: string;
   options?: string[];
-  inputType?: "text" | "phone" | "email" | "file" | "none";
+  inputType?: "text" | "phone" | "email" | "none";
   inputPlaceholder?: string;
-  fileData?: {
-    name: string;
-    size: string;
-  };
 }
 
 interface FormAnswers {
-  experienceTransport?: string; // 3
-  yearsExperience?: string; // 4
-  licenseType?: string; // 5
-  drivingExperienceCargoPassengers?: string; // 6
-  vehicleType?: string; // 7
-  vehicleOwnership?: string; // 8
-  vehicleYear?: string; // 9
-  vehicleDocValid?: string; // 10
-  communeCity?: string; // 11
-  shiftAvailability?: string; // 12
-  startAvailability?: string; // 13
-  cvUpdated?: string; // 15
-  cvFileName?: string; // 16
-  fullName?: string; // 17
-  phone?: string; // 18
-  email?: string; // 19
-  additionalNotes?: string; // 20
-  rawAttachment?: {
-    filename: string;
-    content: string; // base64
-    contentType?: string;
-  };
+  experienceTransport?: string; // 1
+  yearsExperience?: string; // 2
+  licenseType?: string; // 3
+  drivingExperienceCargoPassengers?: string; // 4
+  vehicleType?: string; // 5
+  vehicleOwnership?: string; // 6
+  vehicleYear?: string; // 7
+  vehicleDocValid?: string; // 8
+  communeCity?: string; // 9
+  shiftAvailability?: string; // 10
+  startAvailability?: string; // 11
+  fullName?: string; // 12
+  phone?: string; // 13
+  email?: string; // 14
+  additionalNotes?: string; // 15
 }
 
 interface WhatsAppChatbotModalProps {
@@ -71,7 +54,6 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const getCurrentTime = () => {
     return new Date().toLocaleTimeString("es-CL", {
@@ -121,7 +103,7 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
   const botReply = (
     text: string,
     options?: string[],
-    inputType: "text" | "phone" | "email" | "file" | "none" = "none",
+    inputType: "text" | "phone" | "email" | "none" = "none",
     inputPlaceholder?: string,
     delay = 600
   ) => {
@@ -176,45 +158,6 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
     ]);
 
     processStepFlow(text);
-  };
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const base64String = (reader.result as string).split(",")[1];
-      setAnswers((prev) => ({
-        ...prev,
-        cvFileName: file.name,
-        rawAttachment: {
-          filename: file.name,
-          content: base64String,
-          contentType: file.type || "application/pdf",
-        },
-      }));
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `user-${Date.now()}`,
-          sender: "user",
-          text: `📄 Currículum adjuntado: ${file.name}`,
-          timestamp: getCurrentTime(),
-          fileData: {
-            name: file.name,
-            size: `${(file.size / 1024).toFixed(1)} KB`,
-          },
-        },
-      ]);
-
-      // Move to step 14
-      setCurrentStep(14);
-      botReply("14. ¿Cuál es tu nombre completo?", undefined, "text", "Ej: Juan Pérez Morales");
-    };
-
-    reader.readAsDataURL(file);
   };
 
   const processStepFlow = (value: string) => {
@@ -363,60 +306,45 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
       case 11: // 11. ¿Tienes disponibilidad para comenzar a trabajar?
         setAnswers((prev) => ({ ...prev, startAvailability: value }));
         setCurrentStep(12);
-        botReply("12. ¿Tienes tu currículum actualizado?", ["Sí", "No"]);
+        botReply("12. ¿Cuál es tu nombre completo?", undefined, "text", "Ej: Juan Carlos Morales");
         break;
 
-      case 12: // 12. ¿Tienes tu currículum actualizado?
-        setAnswers((prev) => ({ ...prev, cvUpdated: value }));
-        setCurrentStep(13);
-        botReply(
-          "13. Adjunta tu currículum vitae. 📄\nPuedes subir tu archivo (PDF/Word) o presionar continuar para enviarlo después.",
-          ["Continuar sin adjuntar / Enviar después"],
-          "file"
-        );
-        break;
-
-      case 13: // 13. Adjunta tu CV (skip/continue)
-        setCurrentStep(14);
-        botReply("14. ¿Cuál es tu nombre completo?", undefined, "text", "Ej: Juan Carlos Morales");
-        break;
-
-      case 14: // 14. ¿Cuál es tu nombre completo?
+      case 12: // 12. ¿Cuál es tu nombre completo?
         setAnswers((prev) => ({ ...prev, fullName: value }));
-        setCurrentStep(15);
-        botReply("15. ¿Cuál es tu número de teléfono?", undefined, "phone", "Ej: +56 9 8765 4321");
+        setCurrentStep(13);
+        botReply("13. ¿Cuál es tu número de teléfono?", undefined, "phone", "Ej: +56 9 8765 4321");
         break;
 
-      case 15: // 15. ¿Cuál es tu número de teléfono?
+      case 13: // 13. ¿Cuál es tu número de teléfono?
         setAnswers((prev) => ({ ...prev, phone: value }));
-        setCurrentStep(16);
-        botReply("16. ¿Cuál es tu correo electrónico?", undefined, "email", "Ej: tu.nombre@gmail.com");
+        setCurrentStep(14);
+        botReply("14. ¿Cuál es tu correo electrónico?", undefined, "email", "Ej: tu.nombre@gmail.com");
         break;
 
-      case 16: // 16. ¿Cuál es tu correo electrónico?
+      case 14: // 14. ¿Cuál es tu correo electrónico?
         setAnswers((prev) => ({ ...prev, email: value }));
-        setCurrentStep(17);
+        setCurrentStep(15);
         botReply(
-          "17. ¿Hay algo más que quieras contarnos sobre tu experiencia o disponibilidad?",
+          "15. ¿Hay algo más que quieras contarnos sobre tu experiencia o disponibilidad?",
           ["Omitir / Ninguno"],
           "text",
           "Escribe aquí cualquier detalle adicional..."
         );
         break;
 
-      case 17: // 17. Comentarios adicionales
+      case 15: // 15. Comentarios adicionales
         setAnswers((prev) => ({
           ...prev,
           additionalNotes: value === "Omitir / Ninguno" ? "" : value,
         }));
-        setCurrentStep(18);
+        setCurrentStep(16);
         botReply(
           "📋 ¡Hemos completado todas las preguntas!\n\n¿Deseas que nuestro equipo de operaciones y RRHH de DASAI te contacte?",
           ["✅ Sí, contáctenme", "❌ No por ahora"]
         );
         break;
 
-      case 18: // Contact Decision
+      case 16: // Contact Decision
         if (value.includes("Sí") || value.includes("contáctenme")) {
           submitLead(true);
         } else {
@@ -609,17 +537,6 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
                 >
                   <p className="whitespace-pre-line font-medium">{msg.text}</p>
 
-                  {/* Attachment card preview */}
-                  {msg.fileData && (
-                    <div className="mt-2 p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs flex items-center gap-2">
-                      <Paperclip className="w-4 h-4 text-emerald-700 shrink-0" />
-                      <div className="overflow-hidden">
-                        <div className="font-bold text-slate-800 truncate">{msg.fileData.name}</div>
-                        <div className="text-[10px] text-slate-500">{msg.fileData.size}</div>
-                      </div>
-                    </div>
-                  )}
-
                   <div className="flex items-center justify-end gap-1 mt-1 -mb-1 text-[10px] text-slate-400">
                     <span>{msg.timestamp}</span>
                     {!isBot && <CheckCheck className="w-3.5 h-3.5 text-[#34B7F1]" />}
@@ -660,32 +577,6 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
 
         {/* Chat Input Bar */}
         <div className="bg-[#F0F2F5] px-3 py-2.5 border-t border-slate-200/80 shrink-0">
-          {/* Hidden File Input */}
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileUpload}
-            accept=".pdf,.doc,.docx"
-            className="hidden"
-          />
-
-          {lastMessage?.inputType === "file" && (
-            <div className="mb-2 flex items-center justify-between bg-white px-3 py-2 rounded-xl border border-emerald-200">
-              <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                <Paperclip className="w-4 h-4 text-[#075E54]" />
-                <span>¿Deseas adjuntar tu archivo CV?</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-2xs transition-colors"
-              >
-                <Upload className="w-3.5 h-3.5" />
-                <span>Subir PDF/DOC</span>
-              </button>
-            </div>
-          )}
-
           <form onSubmit={handleTextInputSubmit} className="flex items-center gap-2">
             <div className="relative flex-1">
               <input
@@ -697,19 +588,8 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
                   (hasOptions ? "Selecciona una opción o escribe aquí..." : "Escribe un mensaje...")
                 }
                 disabled={isTyping || isSubmitting}
-                className="w-full bg-white pl-4 pr-10 py-2.5 rounded-full border border-slate-300 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#075E54] focus:ring-1 focus:ring-[#075E54] disabled:bg-slate-100"
+                className="w-full bg-white px-4 py-2.5 rounded-full border border-slate-300 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#075E54] focus:ring-1 focus:ring-[#075E54] disabled:bg-slate-100"
               />
-
-              {lastMessage?.inputType === "file" && (
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#075E54]"
-                  title="Adjuntar archivo"
-                >
-                  <Paperclip className="w-4 h-4" />
-                </button>
-              )}
             </div>
 
             <button
