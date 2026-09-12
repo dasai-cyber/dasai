@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 50" width="100%" height="100%" fill="none">
+  <!-- Walmart Wordmark -->
+  <text x="10" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.8" fill="#0071CE">Walmart</text>
+  
+  <!-- Walmart Spark (6 yellow rounded petals) -->
+  <g transform="translate(162, 25)">
+    <!-- 0 deg (top) -->
+    <rect x="-3" y="-18" width="6" height="11" rx="3" fill="#FFC220" />
+    <!-- 60 deg -->
+    <rect x="-3" y="-18" width="6" height="11" rx="3" fill="#FFC220" transform="rotate(60)" />
+    <!-- 120 deg -->
+    <rect x="-3" y="-18" width="6" height="11" rx="3" fill="#FFC220" transform="rotate(120)" />
+    <!-- 180 deg (bottom) -->
+    <rect x="-3" y="-18" width="6" height="11" rx="3" fill="#FFC220" transform="rotate(180)" />
+    <!-- 240 deg -->
+    <rect x="-3" y="-18" width="6" height="11" rx="3" fill="#FFC220" transform="rotate(240)" />
+    <!-- 300 deg -->
+    <rect x="-3" y="-18" width="6" height="11" rx="3" fill="#FFC220" transform="rotate(300)" />
+  </g>
+</svg>

@@ -90,6 +90,7 @@ export interface CompanyConfig {
   clientLogos: {
     name: string;
     industry: string;
+    logo?: string;
   }[];
 }
 
@@ -495,10 +496,11 @@ export const COMPANY_DATA: CompanyConfig = {
     },
   ],
   clientLogos: [
-    { name: "CLIENTE 01 — Retail Corporativo", industry: "Retail & Comercio" },
-    { name: "CLIENTE 02 — Distribuidora Nacional", industry: "Consumo Masivo" },
-    { name: "CLIENTE 03 — Insumos Industriales", industry: "Industria & Manufactura" },
-    { name: "CLIENTE 04 — E-Commerce Tech", industry: "Tecnología & E-commerce" },
-    { name: "CLIENTE 05 — Farmacéutica & Salud", industry: "Salud & Cuidado" },
+    { name: "Falabella", industry: "Retail & E-commerce", logo: "/images/clients/falabella.svg" },
+    { name: "Walmart Chile", industry: "Supermercados & Distribución", logo: "/images/clients/walmart.svg" },
+    { name: "Mercado Libre", industry: "E-Commerce & Envíos", logo: "/images/clients/mercadolibre.svg" },
+    { name: "Cencosud", industry: "Retail & Consumo Masivo", logo: "/images/clients/cencosud.svg" },
+    { name: "Sodimac", industry: "Home Center & Materiales", logo: "/images/clients/sodimac.svg" },
+    { name: "Ripley", industry: "Tiendas por Departamento", logo: "/images/clients/ripley.svg" },
   ],
 };

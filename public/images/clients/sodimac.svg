@@ -1,0 +1,9 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="100%" height="100%" fill="none">
+  <!-- Sodimac House/Roof Accent -->
+  <g transform="translate(12, 12)">
+    <path d="M12 2L2 10h4v12h12V10h4L12 2z" fill="#005BAA" />
+    <path d="M12 2L2 10h20L12 2z" fill="#EE2737" />
+  </g>
+  <!-- Sodimac Wordmark -->
+  <text x="44" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="900" letter-spacing="0.5" fill="#005BAA">SODIMAC</text>
+</svg>
