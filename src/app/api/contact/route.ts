@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/validations";
 import { prisma } from "@/lib/db";
+import { sendContactNotification } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
@@ -10,6 +11,7 @@ export async function POST(req: NextRequest) {
 
     let messageId = `MSG-${Date.now().toString().slice(-6)}`;
 
+    // 1. Guardar en Base de Datos si está disponible
     try {
       const record = await prisma.contactMessage.create({
         data: {
@@ -23,6 +25,19 @@ export async function POST(req: NextRequest) {
       messageId = record.id;
     } catch (dbErr) {
       console.warn("DB offline or pending migration:", dbErr);
+    }
+
+    // 2. Enviar notificación por correo a viviana.silva@dasai.cl y nicolas.silva@dasai.cl
+    try {
+      await sendContactNotification({
+        name: validatedData.name,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        subject: validatedData.subject,
+        message: validatedData.message,
+      });
+    } catch (mailErr) {
+      console.error("Error al enviar notificación por correo:", mailErr);
     }
 
     return NextResponse.json(

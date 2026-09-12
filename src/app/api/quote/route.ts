@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { quoteFormSchema } from "@/lib/validations";
 import { prisma } from "@/lib/db";
+import { sendQuoteNotification } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest) {
 
     let savedId = `QT-${Date.now().toString().slice(-6)}`;
 
-    // Save to Prisma DB if accessible
+    // 1. Guardar en Base de Datos si está disponible
     try {
       const record = await prisma.quoteRequest.create({
         data: {
@@ -38,6 +39,28 @@ export async function POST(req: NextRequest) {
       savedId = record.id;
     } catch (dbErr) {
       console.warn("DB offline or pending migration, proceeding with memory response:", dbErr);
+    }
+
+    // 2. Enviar notificación por correo a viviana.silva@dasai.cl y nicolas.silva@dasai.cl
+    try {
+      await sendQuoteNotification({
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        company: validatedData.company,
+        phone: validatedData.phone,
+        email: validatedData.email,
+        region: validatedData.region,
+        city: validatedData.city,
+        serviceType: validatedData.serviceType,
+        vehicleType: validatedData.vehicleType,
+        estimatedVolume: validatedData.estimatedVolume,
+        frequency: validatedData.frequency,
+        origin: validatedData.origin,
+        destination: validatedData.destination,
+        description: validatedData.description,
+      });
+    } catch (mailErr) {
+      console.error("Error al enviar notificación de cotización por correo:", mailErr);
     }
 
     return NextResponse.json(
