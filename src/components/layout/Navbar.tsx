@@ -57,6 +57,7 @@ export function Navbar() {
     },
     { label: "Flota", href: "/flota" },
     { label: "Cobertura", href: "/cobertura" },
+    { label: "Trabaja con Nosotros", href: "/trabaja-con-nosotros" },
     { label: "Seguimiento", href: "/seguimiento", isHighlighted: true },
     { label: "Contacto", href: "/contacto" },
   ];

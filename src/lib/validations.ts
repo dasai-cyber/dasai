@@ -47,25 +47,26 @@ export const trackingQuerySchema = z.object({
 
 export type TrackingQueryData = z.infer<typeof trackingQuerySchema>;
 
-export const jobApplicationSchema = z.object({
-  firstName: z.string().min(2, "Ingresa tu nombre"),
-  lastName: z.string().min(2, "Ingresa tu apellido"),
-  email: z.string().email("Ingresa un correo electrónico válido"),
-  phone: z.string().min(8, "Ingresa un número de contacto válido"),
-  position: z.enum([
-    "conductor-a2",
-    "conductor-a4",
-    "conductor-a5",
-    "peoneta-auxiliar",
-    "operador-bodega",
-    "ejecutivo-logistico",
-    "otro",
-  ], {
-    errorMap: () => ({ message: "Selecciona el cargo al que postulas" }),
-  }),
-  licenseType: z.string().optional(),
-  experienceYears: z.string().min(1, "Indica tus años de experiencia"),
-  message: z.string().optional(),
+// Formulario Chofer / Trabaja con Nosotros
+export const driverRegistrationSchema = z.object({
+  fullName: z.string().min(3, "Ingresa el nombre completo"),
+  rut: z.string().min(8, "Ingresa un RUT válido (ej: 12.345.678-9)"),
+  address: z.string().optional().or(z.literal("")),
+  commune: z.string().optional().or(z.literal("")),
+  phone: z.string().min(8, "Ingresa un teléfono de contacto válido"),
+  secondaryPhone: z.string().optional().or(z.literal("")),
+  email: z.string().email("Ingresa un correo electrónico válido").optional().or(z.literal("")),
+  localNumber: z.string().optional().or(z.literal("")),
+  maritalStatus: z.string().optional().or(z.literal("")),
+  education: z.string().optional().or(z.literal("")),
+  service: z.string().min(1, "Selecciona el tipo de servicio"),
+  licensePlate: z.string().optional().or(z.literal("")),
+  vehicleModel: z.string().optional().or(z.literal("")),
+  vehicleYear: z.string().optional().or(z.literal("")),
 });
 
-export type JobApplicationData = z.infer<typeof jobApplicationSchema>;
+export type DriverRegistrationData = z.infer<typeof driverRegistrationSchema>;
+
+// Alias compatible con legacy jobApplication
+export const jobApplicationSchema = driverRegistrationSchema;
+export type JobApplicationData = DriverRegistrationData;

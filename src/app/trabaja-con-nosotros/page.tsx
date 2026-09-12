@@ -13,31 +13,31 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Trabaja con Nosotros — Únete al Equipo DASAI",
+  title: "Trabaja con Nosotros — Registro de Choferes DASAI",
   description:
-    "Postula para integrarte a nuestro equipo de conductores profesionales (A2, A4, A5), auxiliares y operadores logísticos en Chile.",
+    "Postula para integrarte a nuestra flota de conductores profesionales, furgones, camionetas y camiones de distribución en Chile.",
 };
 
 export default function TrabajaConNosotrosPage() {
   const benefits = [
     {
-      title: "Contrato Estable & Beneficios",
-      desc: "Seguridad laboral con remuneraciones acorde al mercado, imposiciones al día y bonos por cumplimiento.",
+      title: "Pagos Puntuales y Rutas Claras",
+      desc: "Seguridad y cumplimiento en cada servicio realizado con tarifas competitivas del mercado.",
       icon: ShieldCheck,
     },
     {
-      title: "Flota Moderna & Bien Mantenida",
-      desc: "Vehículos con mantenimiento preventivo riguroso, aire acondicionado y tecnología de asistencia.",
+      title: "Flexibilidad de Servicios",
+      desc: "Opciones para última milla, distribución programada o transporte de carga según tu disponibilidad y tipo de vehículo.",
       icon: Truck,
     },
     {
-      title: "Ambiente Colaborativo",
-      desc: "Respeto, compañerismo y canales de comunicación abiertos con la jefatura de tráfico.",
+      title: "Soporte Operacional Permanente",
+      desc: "Acompañamiento en ruta desde nuestra central de monitoreo y tráfico 24/7.",
       icon: Heart,
     },
     {
-      title: "Capacitación Continua",
-      desc: "Inducciones periódicas en conducción eficiente, seguridad vial y primeros auxilios.",
+      title: "Crecimiento y Continuidad",
+      desc: "Posibilidad de asignación recurrente de rutas y convenios comerciales estables.",
       icon: Award,
     },
   ];
@@ -45,41 +45,46 @@ export default function TrabajaConNosotrosPage() {
   return (
     <>
       <PageHeader
-        badge="Bolsa de Empleo"
-        title="Forma parte del equipo de transporte DASAI"
-        description="Buscamos conductores profesionales, peonetas y personal logístico comprometido con la excelencia y la puntualidad."
+        badge="Únete a la Flota"
+        title="Trabaja con Nosotros — Registro de Choferes"
+        description="Si tienes vehículo propio o experiencia en conducción profesional, completa tus datos para incorporarte a nuestros servicios logísticos."
         breadcrumbs={[{ label: "Trabaja con Nosotros" }]}
       />
 
-      <section className="py-16 sm:py-24 bg-slate-50">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Benefits & Culture (Col 1-5) */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#FF6B00]">
-                  ¿Por qué trabajar en DASAI?
+      <section className="py-12 sm:py-20 bg-slate-950 text-slate-100 relative overflow-hidden">
+        {/* Glow background effects */}
+        <div className="absolute top-10 left-1/4 w-96 h-96 bg-[#480CA8] rounded-full blur-3xl opacity-20 pointer-events-none" />
+        <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-[#F72585] rounded-full blur-3xl opacity-15 pointer-events-none" />
+
+        <Container className="relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            
+            {/* Beneficios (Col 1-5) */}
+            <div className="lg:col-span-4 space-y-6">
+              <div className="bg-[#161a23] rounded-2xl p-6 sm:p-8 border border-slate-800/80 shadow-xl space-y-6">
+                <span className="inline-block px-3 py-1 rounded-full bg-[#480CA8]/30 border border-purple-500/30 text-xs font-extrabold uppercase tracking-wider text-[#F72585]">
+                  ¿Por qué unirte a DASAI?
                 </span>
-                <h3 className="text-2xl font-black text-[#0F2C59]">
-                  Crecemos junto a las personas que mueven nuestras rutas
+                <h3 className="text-2xl font-black text-white leading-tight">
+                  Mueve tus rutas con el respaldo de una empresa seria
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Sabemos que el valor de una empresa logística reside en sus conductores y operadores de terreno. Por eso cuidamos a nuestro equipo con condiciones dignas, respeto y respaldo permanente.
+                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                  Buscamos choferes responsables con o sin vehículo para cubrir entregas de última milla, distribución y transporte en Santiago y regiones.
                 </p>
 
                 <div className="space-y-4 pt-2">
                   {benefits.map((b, idx) => {
                     const Icon = b.icon;
                     return (
-                      <div key={idx} className="flex items-start gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-slate-100 text-[#0F2C59] flex items-center justify-center shrink-0">
+                      <div key={idx} className="flex items-start gap-3.5">
+                        <div className="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-500/30 text-purple-400 flex items-center justify-center shrink-0">
                           <Icon className="w-5 h-5" />
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-slate-900">
+                          <h4 className="text-sm font-bold text-white">
                             {b.title}
                           </h4>
-                          <p className="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                          <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
                             {b.desc}
                           </p>
                         </div>
@@ -87,24 +92,18 @@ export default function TrabajaConNosotrosPage() {
                     );
                   })}
                 </div>
-              </div>
-            </div>
 
-            {/* Application Form (Col 6-12) */}
-            <div className="lg:col-span-7">
-              <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-corporate-lg space-y-6">
-                <div>
-                  <h3 className="text-2xl font-extrabold text-[#0F2C59]">
-                    Envía tu postulación
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Completa tus datos personales y experiencia laboral para ser considerado en nuestros procesos de selección.
-                  </p>
+                <div className="p-4 rounded-xl bg-[#1e2330] border border-slate-700/60 text-xs text-slate-300">
+                  <span className="font-bold text-emerald-400">¿Tienes dudas?</span> Escríbenos a <a href="mailto:contacto@dasai.cl" className="text-purple-400 hover:underline">contacto@dasai.cl</a> o contáctanos por WhatsApp.
                 </div>
-
-                <JobApplicationForm />
               </div>
             </div>
+
+            {/* Formulario Agregar Chofer (Col 6-12) */}
+            <div className="lg:col-span-8">
+              <JobApplicationForm />
+            </div>
+
           </div>
         </Container>
       </section>

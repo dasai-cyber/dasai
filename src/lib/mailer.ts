@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import { COMPANY_DATA } from "./company";
 
 export const DEFAULT_RECIPIENTS = [
+  "contacto@dasai.cl",
   "viviana.silva@dasai.cl",
   "nicolas.silva@dasai.cl",
 ];
@@ -21,14 +22,13 @@ export function getTransporter() {
   const pass = process.env.SMTP_PASS || process.env.ZOHO_PASSWORD || "";
 
   if (!pass) {
-    // If no password configured yet, log a helpful warning and return null
     return null;
   }
 
   return nodemailer.createTransport({
     host,
     port,
-    secure: port === 465, // true for 465, false for 587
+    secure: port === 465,
     auth: {
       user,
       pass,
@@ -284,6 +284,175 @@ export async function sendQuoteNotification(data: SendQuoteEmailParams) {
     subject: `[Cotización DASAI] ${data.serviceType.toUpperCase()} - ${data.firstName} ${data.lastName} (${data.company || "Particular"})`,
     html: htmlContent,
     text: `Nueva cotización en dasai.cl\n\nCliente: ${data.firstName} ${data.lastName}\nEmpresa: ${data.company || "N/A"}\nTeléfono: ${data.phone}\nCorreo: ${data.email}\nServicio: ${data.serviceType}\nVehículo: ${data.vehicleType}\nVolumen: ${data.estimatedVolume || "N/A"}\nFrecuencia: ${data.frequency}\nRuta: ${data.origin} -> ${data.destination} (${data.city}, ${data.region})\n\nDescripción:\n${data.description}`,
+  };
+
+  return await transporter.sendMail(mailOptions);
+}
+
+export interface SendDriverEmailParams {
+  fullName: string;
+  rut: string;
+  address?: string | null;
+  commune?: string | null;
+  phone: string;
+  secondaryPhone?: string | null;
+  email?: string | null;
+  localNumber?: string | null;
+  maritalStatus?: string | null;
+  education?: string | null;
+  service: string;
+  licensePlate?: string | null;
+  vehicleModel?: string | null;
+  vehicleYear?: string | null;
+}
+
+export async function sendDriverNotification(data: SendDriverEmailParams) {
+  const recipients = getRecipients();
+  const transporter = getTransporter();
+
+  const formattedDate = new Intl.DateTimeFormat("es-CL", {
+    dateStyle: "full",
+    timeStyle: "short",
+    timeZone: "America/Santiago",
+  }).format(new Date());
+
+  const htmlContent = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0d1117; color: #e6edf3; margin: 0; padding: 20px; }
+      .container { max-width: 640px; margin: 0 auto; background: #161b22; border-radius: 16px; overflow: hidden; border: 1px solid #30363d; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+      .header { background: linear-gradient(135deg, #1f6feb 0%, #0d1117 100%); padding: 30px 24px; text-align: center; color: #ffffff; border-bottom: 1px solid #30363d; }
+      .badge { display: inline-block; background: #238636; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+      .title { margin: 0; font-size: 22px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px; }
+      .content { padding: 26px 24px; }
+      .section-heading { font-size: 12px; font-weight: 800; text-transform: uppercase; color: #58a6ff; letter-spacing: 1px; margin: 18px 0 10px 0; border-bottom: 1px solid #21262d; padding-bottom: 6px; }
+      .grid-2 { display: flex; gap: 12px; margin-bottom: 10px; }
+      .grid-3 { display: flex; gap: 10px; margin-bottom: 10px; }
+      .field-card { background: #21262d; border: 1px solid #30363d; border-radius: 10px; padding: 12px 14px; flex: 1; }
+      .field-label { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #8b949e; letter-spacing: 0.5px; margin-bottom: 3px; }
+      .field-value { font-size: 14px; font-weight: 600; color: #f0f6fc; word-break: break-word; }
+      .footer { background: #0d1117; padding: 20px 24px; border-top: 1px solid #30363d; font-size: 12px; color: #8b949e; text-align: center; }
+      .btn { display: inline-block; background: #238636; color: #ffffff !important; text-decoration: none; font-weight: bold; font-size: 13px; padding: 12px 24px; border-radius: 8px; margin-top: 16px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="badge">🚚 Postulación Chofer / Conductor</div>
+        <h1 class="title">Nuevo Registro de Chofer en DASAI</h1>
+        <p style="margin: 6px 0 0 0; font-size: 13px; opacity: 0.9; color: #8b949e;">${formattedDate}</p>
+      </div>
+      <div class="content">
+        
+        <div class="section-heading">👤 Datos Personales</div>
+        <div class="grid-2">
+          <div class="field-card">
+            <div class="field-label">Nombre Completo</div>
+            <div class="field-value">${data.fullName}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">RUT</div>
+            <div class="field-value">${data.rut}</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-card">
+            <div class="field-label">Dirección</div>
+            <div class="field-value">${data.address || "No especificada"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">Comuna</div>
+            <div class="field-value">${data.commune || "No especificada"}</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-card">
+            <div class="field-label">Teléfono Principal</div>
+            <div class="field-value"><a href="tel:${data.phone}" style="color: #58a6ff; text-decoration: none;">${data.phone}</a></div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">WhatsApp / Secundario</div>
+            <div class="field-value">${data.secondaryPhone ? `<a href="tel:${data.secondaryPhone}" style="color: #58a6ff; text-decoration: none;">${data.secondaryPhone}</a>` : "No especificado"}</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-card">
+            <div class="field-label">Correo Electrónico</div>
+            <div class="field-value">${data.email ? `<a href="mailto:${data.email}" style="color: #58a6ff; text-decoration: none;">${data.email}</a>` : "No especificado"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">N° Local / Departamento</div>
+            <div class="field-value">${data.localNumber || "N/A"}</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field-card">
+            <div class="field-label">Estado Civil</div>
+            <div class="field-value">${data.maritalStatus || "No especificado"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">Nivel de Estudios</div>
+            <div class="field-value">${data.education || "No especificado"}</div>
+          </div>
+        </div>
+
+        <div class="section-heading">🚛 Servicio y Vehículo</div>
+        <div class="field-card" style="margin-bottom: 10px;">
+          <div class="field-label">Servicio al que Postula</div>
+          <div class="field-value" style="color: #3fb950; font-size: 15px;">${data.service}</div>
+        </div>
+
+        <div class="grid-3">
+          <div class="field-card">
+            <div class="field-label">Patente</div>
+            <div class="field-value">${data.licensePlate || "A consultar"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">Modelo de Vehículo</div>
+            <div class="field-value">${data.vehicleModel || "A consultar"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">Año</div>
+            <div class="field-value">${data.vehicleYear || "A consultar"}</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 24px;">
+          ${data.phone ? `<a href="https://wa.me/${data.phone.replace(/\D/g, "")}" class="btn" style="background: #25D366; margin-right: 8px;">Contactar por WhatsApp</a>` : ""}
+          ${data.email ? `<a href="mailto:${data.email}?subject=Postulación Conductor - DASAI Logística" class="btn">Enviar Correo</a>` : ""}
+        </div>
+
+      </div>
+      <div class="footer">
+        Postulación recibida desde el formulario <strong>Trabaja con Nosotros</strong> en <strong>dasai.cl</strong>.<br>
+        Destinatarios notificados: ${recipients.join(", ")}
+      </div>
+    </div>
+  </body>
+  </html>
+  `;
+
+  if (!transporter) {
+    console.info(`[Mailer] Simulación: Postulación de chofer ${data.fullName} (${data.rut}) enviada a: ${recipients.join(", ")}`);
+    return { success: true, simulated: true };
+  }
+
+  const senderEmail = process.env.SMTP_USER || "contacto@dasai.cl";
+
+  const mailOptions = {
+    from: `"Web DASAI Choferes" <${senderEmail}>`,
+    to: recipients,
+    replyTo: data.email || senderEmail,
+    subject: `[Nuevo Chofer DASAI] ${data.fullName} - RUT: ${data.rut} (${data.service})`,
+    html: htmlContent,
+    text: `Nueva postulación de chofer en dasai.cl\n\nNombre: ${data.fullName}\nRUT: ${data.rut}\nTeléfono: ${data.phone}\nWhatsApp/Secundario: ${data.secondaryPhone || "N/A"}\nCorreo: ${data.email || "N/A"}\nDirección: ${data.address || "N/A"}, ${data.commune || "N/A"}\nEstado Civil: ${data.maritalStatus || "N/A"}\nEstudios: ${data.education || "N/A"}\nServicio: ${data.service}\nVehículo: ${data.vehicleModel || "N/A"} (${data.vehicleYear || "N/A"}) - Patente: ${data.licensePlate || "N/A"}`,
   };
 
   return await transporter.sendMail(mailOptions);
