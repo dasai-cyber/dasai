@@ -14,28 +14,33 @@ export function ClientsTrust() {
           </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 max-w-4xl mx-auto">
           {COMPANY_DATA.clientLogos.map((client, idx) => (
             <div
               key={idx}
-              className="p-4 sm:p-5 rounded-2xl bg-[#FCF9FF] border border-[#EADBFC] text-center hover:bg-white hover:border-[#7209B7]/40 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center gap-2 group h-28"
+              className="w-full sm:w-72 p-5 sm:p-6 rounded-2xl bg-[#FCF9FF] border border-[#EADBFC] hover:bg-white hover:border-[#7209B7]/40 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center gap-3 group"
             >
               {client.logo ? (
-                <div className="relative w-full h-9 flex items-center justify-center">
+                <div className="relative w-full h-14 flex items-center justify-center overflow-hidden rounded-lg">
                   <Image
                     src={client.logo}
                     alt={`Logo ${client.name}`}
-                    width={130}
-                    height={36}
-                    className="max-h-8 w-auto object-contain transition-all duration-300 opacity-80 group-hover:opacity-100 group-hover:scale-105"
+                    width={220}
+                    height={56}
+                    className="max-h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
                   />
                 </div>
               ) : (
-                <Building2 className="w-6 h-6 text-[#7209B7] group-hover:text-[#F72585] transition-colors" />
+                <Building2 className="w-8 h-8 text-[#7209B7] group-hover:text-[#F72585] transition-colors" />
               )}
-              <span className="text-[11px] font-semibold text-slate-500 group-hover:text-[#480CA8] transition-colors line-clamp-1">
-                {client.industry}
-              </span>
+              <div className="text-center">
+                <span className="text-xs font-extrabold text-slate-800 block group-hover:text-[#480CA8] transition-colors">
+                  {client.name}
+                </span>
+                <span className="text-[11px] font-medium text-slate-400">
+                  {client.industry}
+                </span>
+              </div>
             </div>
           ))}
         </div>

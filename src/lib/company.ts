@@ -496,11 +496,7 @@ export const COMPANY_DATA: CompanyConfig = {
     },
   ],
   clientLogos: [
-    { name: "Falabella", industry: "Retail & E-commerce", logo: "/images/clients/falabella.svg" },
-    { name: "Walmart Chile", industry: "Supermercados & Distribución", logo: "/images/clients/walmart.svg" },
-    { name: "Mercado Libre", industry: "E-Commerce & Envíos", logo: "/images/clients/mercadolibre.svg" },
-    { name: "Cencosud", industry: "Retail & Consumo Masivo", logo: "/images/clients/cencosud.svg" },
-    { name: "Sodimac", industry: "Home Center & Materiales", logo: "/images/clients/sodimac.svg" },
-    { name: "Ripley", industry: "Tiendas por Departamento", logo: "/images/clients/ripley.svg" },
+    { name: "Falabella", industry: "Retail & Distribución", logo: "/images/clients/falabella.svg" },
+    { name: "Walmart", industry: "Supermercados & Logística", logo: "/images/clients/walmart.png" },
   ],
 };
