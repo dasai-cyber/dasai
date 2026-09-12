@@ -297,10 +297,7 @@ export interface SendDriverEmailParams {
   phone: string;
   secondaryPhone?: string | null;
   email?: string | null;
-  localNumber?: string | null;
-  maritalStatus?: string | null;
   education?: string | null;
-  service: string;
   licensePlate?: string | null;
   vehicleModel?: string | null;
   vehicleYear?: string | null;
@@ -324,7 +321,7 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
     <style>
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0d1117; color: #e6edf3; margin: 0; padding: 20px; }
       .container { max-width: 640px; margin: 0 auto; background: #161b22; border-radius: 16px; overflow: hidden; border: 1px solid #30363d; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-      .header { background: linear-gradient(135deg, #1f6feb 0%, #0d1117 100%); padding: 30px 24px; text-align: center; color: #ffffff; border-bottom: 1px solid #30363d; }
+      .header { background: linear-gradient(135deg, #480CA8 0%, #0d1117 100%); padding: 30px 24px; text-align: center; color: #ffffff; border-bottom: 1px solid #30363d; }
       .badge { display: inline-block; background: #238636; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
       .title { margin: 0; font-size: 22px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px; }
       .content { padding: 26px 24px; }
@@ -387,28 +384,12 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
             <div class="field-value">${data.email ? `<a href="mailto:${data.email}" style="color: #58a6ff; text-decoration: none;">${data.email}</a>` : "No especificado"}</div>
           </div>
           <div class="field-card">
-            <div class="field-label">N° Local / Departamento</div>
-            <div class="field-value">${data.localNumber || "N/A"}</div>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="field-card">
-            <div class="field-label">Estado Civil</div>
-            <div class="field-value">${data.maritalStatus || "No especificado"}</div>
-          </div>
-          <div class="field-card">
             <div class="field-label">Nivel de Estudios</div>
             <div class="field-value">${data.education || "No especificado"}</div>
           </div>
         </div>
 
-        <div class="section-heading">🚛 Servicio y Vehículo</div>
-        <div class="field-card" style="margin-bottom: 10px;">
-          <div class="field-label">Servicio al que Postula</div>
-          <div class="field-value" style="color: #3fb950; font-size: 15px;">${data.service}</div>
-        </div>
-
+        <div class="section-heading">🚛 Datos del Vehículo</div>
         <div class="grid-3">
           <div class="field-card">
             <div class="field-label">Patente</div>
@@ -450,9 +431,9 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
     from: `"Web DASAI Choferes" <${senderEmail}>`,
     to: recipients,
     replyTo: data.email || senderEmail,
-    subject: `[Nuevo Chofer DASAI] ${data.fullName} - RUT: ${data.rut} (${data.service})`,
+    subject: `[Nuevo Chofer DASAI] ${data.fullName} - RUT: ${data.rut}`,
     html: htmlContent,
-    text: `Nueva postulación de chofer en dasai.cl\n\nNombre: ${data.fullName}\nRUT: ${data.rut}\nTeléfono: ${data.phone}\nWhatsApp/Secundario: ${data.secondaryPhone || "N/A"}\nCorreo: ${data.email || "N/A"}\nDirección: ${data.address || "N/A"}, ${data.commune || "N/A"}\nEstado Civil: ${data.maritalStatus || "N/A"}\nEstudios: ${data.education || "N/A"}\nServicio: ${data.service}\nVehículo: ${data.vehicleModel || "N/A"} (${data.vehicleYear || "N/A"}) - Patente: ${data.licensePlate || "N/A"}`,
+    text: `Nueva postulación de chofer en dasai.cl\n\nNombre: ${data.fullName}\nRUT: ${data.rut}\nTeléfono: ${data.phone}\nWhatsApp/Secundario: ${data.secondaryPhone || "N/A"}\nCorreo: ${data.email || "N/A"}\nDirección: ${data.address || "N/A"}, ${data.commune || "N/A"}\nEstudios: ${data.education || "N/A"}\nVehículo: ${data.vehicleModel || "N/A"} (${data.vehicleYear || "N/A"}) - Patente: ${data.licensePlate || "N/A"}`,
   };
 
   return await transporter.sendMail(mailOptions);

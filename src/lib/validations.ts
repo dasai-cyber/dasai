@@ -47,7 +47,7 @@ export const trackingQuerySchema = z.object({
 
 export type TrackingQueryData = z.infer<typeof trackingQuerySchema>;
 
-// Formulario Chofer / Trabaja con Nosotros
+// Formulario Chofer / Trabaja con Nosotros (sin N° Local, Estado Civil ni Servicio)
 export const driverRegistrationSchema = z.object({
   fullName: z.string().min(3, "Ingresa el nombre completo"),
   rut: z.string().min(8, "Ingresa un RUT válido (ej: 12.345.678-9)"),
@@ -56,10 +56,7 @@ export const driverRegistrationSchema = z.object({
   phone: z.string().min(8, "Ingresa un teléfono de contacto válido"),
   secondaryPhone: z.string().optional().or(z.literal("")),
   email: z.string().email("Ingresa un correo electrónico válido").optional().or(z.literal("")),
-  localNumber: z.string().optional().or(z.literal("")),
-  maritalStatus: z.string().optional().or(z.literal("")),
   education: z.string().optional().or(z.literal("")),
-  service: z.string().min(1, "Selecciona el tipo de servicio"),
   licensePlate: z.string().optional().or(z.literal("")),
   vehicleModel: z.string().optional().or(z.literal("")),
   vehicleYear: z.string().optional().or(z.literal("")),
@@ -67,6 +64,5 @@ export const driverRegistrationSchema = z.object({
 
 export type DriverRegistrationData = z.infer<typeof driverRegistrationSchema>;
 
-// Alias compatible con legacy jobApplication
 export const jobApplicationSchema = driverRegistrationSchema;
 export type JobApplicationData = DriverRegistrationData;

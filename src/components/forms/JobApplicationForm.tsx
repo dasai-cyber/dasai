@@ -28,10 +28,7 @@ export function JobApplicationForm() {
       phone: "",
       secondaryPhone: "",
       email: "",
-      localNumber: "",
-      maritalStatus: "",
       education: "",
-      service: "",
       licensePlate: "",
       vehicleModel: "",
       vehicleYear: "",
@@ -81,10 +78,10 @@ export function JobApplicationForm() {
           <CheckCircle2 className="w-10 h-10" />
         </div>
         <h3 className="text-2xl font-bold text-white">
-          ¡Registro de Chofer Recibido!
+          ¡Registro de Chofer Enviado!
         </h3>
         <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-          Tus antecedentes han sido enviados exitosamente a nuestro equipo de operaciones en <strong>contacto@dasai.cl</strong>. Te contactaremos a la brevedad.
+          Tus antecedentes han sido enviados exitosamente a <strong>contacto@dasai.cl</strong>. Nuestro equipo de operaciones te contactará a la brevedad.
         </p>
         <div className="pt-2">
           <Button
@@ -102,7 +99,7 @@ export function JobApplicationForm() {
 
   return (
     <div className="w-full max-w-3xl mx-auto bg-[#161a23] text-slate-100 rounded-2xl border border-slate-800/80 shadow-2xl overflow-hidden">
-      {/* Header Modal style matching the screenshot */}
+      {/* Header Modal style */}
       <div className="p-6 sm:p-8 border-b border-slate-800/80 flex items-start justify-between">
         <div className="flex items-center gap-3.5">
           <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
@@ -230,46 +227,21 @@ export function JobApplicationForm() {
           </div>
         </div>
 
-        {/* Fila 4: Correo electrónico */}
-        <div>
-          <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-            Correo electrónico
-          </label>
-          <input
-            type="email"
-            {...register("email")}
-            placeholder="nombre@correo.cl"
-            className="w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
-          />
-          {errors.email && (
-            <p className="text-[11px] text-red-400 mt-1">{errors.email.message}</p>
-          )}
-        </div>
-
-        {/* Fila 5: N° Local, Estado civil, Estudios, Servicio */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {/* Fila 4: Correo electrónico & Estudios */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
           <div>
             <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-              N° Local
+              Correo electrónico
             </label>
             <input
-              type="text"
-              {...register("localNumber")}
-              placeholder="Ej: 123"
-              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+              type="email"
+              {...register("email")}
+              placeholder="nombre@correo.cl"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
             />
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-              Estado civil
-            </label>
-            <input
-              type="text"
-              {...register("maritalStatus")}
-              placeholder="Ej: Soltero"
-              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
-            />
+            {errors.email && (
+              <p className="text-[11px] text-red-400 mt-1">{errors.email.message}</p>
+            )}
           </div>
 
           <div>
@@ -280,34 +252,13 @@ export function JobApplicationForm() {
               type="text"
               {...register("education")}
               placeholder="Ej: Media"
-              className="w-full px-3.5 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
             />
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-              Servicio <span className="text-emerald-400">*</span>
-            </label>
-            <select
-              {...register("service")}
-              className="w-full px-3 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all cursor-pointer"
-            >
-              <option value="" disabled>Seleccione...</option>
-              <option value="Última Milla (Reparto Urbano)">Última Milla</option>
-              <option value="Distribución Programada (B2B/B2C)">Distribución Programada</option>
-              <option value="Transporte de Carga General">Transporte de Carga</option>
-              <option value="E-commerce Fulfillment / Courier">E-commerce / Courier</option>
-              <option value="Flota Furgón / Camioneta">Flota Furgón / Camioneta</option>
-              <option value="Flota Camión 3/4 o Pesado">Flota Camión 3/4 o Pesado</option>
-            </select>
-            {errors.service && (
-              <p className="text-[11px] text-red-400 mt-1">{errors.service.message}</p>
-            )}
           </div>
         </div>
 
-        {/* Fila 6: Patente, Modelo, Año */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        {/* Fila 5: Patente, Modelo, Año */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1">
           <div>
             <label className="block text-xs font-semibold text-slate-300 mb-1.5">
               Patente
@@ -346,7 +297,7 @@ export function JobApplicationForm() {
         </div>
 
         {/* Botón Submit */}
-        <div className="pt-3">
+        <div className="pt-4">
           <Button
             type="submit"
             variant="accent"
