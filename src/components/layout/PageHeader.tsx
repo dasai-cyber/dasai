@@ -25,32 +25,32 @@ export function PageHeader({
   return (
     <div
       className={cn(
-        "relative bg-[#0F2C59] text-white pt-12 pb-16 lg:pt-16 lg:pb-20 overflow-hidden border-b border-white/10",
+        "relative bg-gradient-to-r from-[#240046] via-[#3A0CA3] to-[#480CA8] text-white pt-12 pb-16 lg:pt-16 lg:pb-20 overflow-hidden border-b border-[#7209B7]/30",
         className
       )}
     >
       {/* Background Decorative Graphic Elements */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38BDF8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#00C29A] rounded-full blur-3xl opacity-20 pointer-events-none" />
-      <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-[#FF6B00] rounded-full blur-3xl opacity-15 pointer-events-none" />
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#F72585_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+      <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#7209B7] rounded-full blur-3xl opacity-25 pointer-events-none" />
+      <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-[#F72585] rounded-full blur-3xl opacity-20 pointer-events-none" />
 
       <Container className="relative z-10">
         {/* Breadcrumbs */}
         {breadcrumbs.length > 0 && (
-          <nav className="flex items-center space-x-2 text-xs font-medium text-slate-300 mb-6 select-none" aria-label="Breadcrumb">
+          <nav className="flex items-center space-x-2 text-xs font-medium text-purple-200 mb-6 select-none" aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white flex items-center gap-1 transition-colors">
               <Home className="w-3.5 h-3.5" />
               <span>Inicio</span>
             </Link>
             {breadcrumbs.map((crumb, idx) => (
               <React.Fragment key={idx}>
-                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                <ChevronRight className="w-3.5 h-3.5 text-purple-400" />
                 {crumb.href ? (
                   <Link href={crumb.href} className="hover:text-white transition-colors">
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className="text-[#FF8A3D] font-bold">{crumb.label}</span>
+                  <span className="text-[#F72585] font-bold">{crumb.label}</span>
                 )}
               </React.Fragment>
             ))}

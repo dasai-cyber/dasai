@@ -60,25 +60,25 @@ export default function CoberturaPage() {
                 <div
                   key={region.id}
                   id={region.id}
-                  className="p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 shadow-sm space-y-5"
+                  className="p-6 sm:p-8 rounded-3xl bg-[#FCF9FF] border border-[#EADBFC] shadow-sm space-y-5"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#EADBFC]">
                     <div>
                       <Badge variant="accent" size="sm">
                         {region.code} • Corredor Activo
                       </Badge>
-                      <h3 className="text-2xl font-black text-[#0F2C59] mt-1.5">
+                      <h3 className="text-2xl font-black text-[#10002B] mt-1.5">
                         {region.name}
                       </h3>
                     </div>
-                    <div className="flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-800">
-                      <Clock className="w-4 h-4 text-[#FF6B00]" />
+                    <div className="flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-xl border border-[#EADBFC] text-xs font-bold text-slate-800">
+                      <Clock className="w-4 h-4 text-[#F72585]" />
                       <span>{region.transitTime}</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-100 text-[#0F2C59] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-pink-100 text-[#F72585] flex items-center justify-center shrink-0 font-bold">
                       <Building className="w-5 h-5" />
                     </div>
                     <div>

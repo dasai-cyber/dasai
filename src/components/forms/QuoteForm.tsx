@@ -98,7 +98,7 @@ export function QuoteForm({
           <CheckCircle2 className="w-10 h-10" />
         </div>
         <div>
-          <h3 className="text-2xl font-extrabold text-[#0F2C59]">
+          <h3 className="text-2xl font-extrabold text-[#10002B]">
             ¡Solicitud de Cotización Recibida!
           </h3>
           <p className="mt-3 text-slate-600 text-sm max-w-md mx-auto leading-relaxed">
@@ -108,7 +108,7 @@ export function QuoteForm({
 
         <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-500 max-w-md mx-auto">
           ¿Requieres atención inmediata? Puedes llamarnos directamente al{" "}
-          <a href={`tel:${COMPANY_DATA.phoneRaw}`} className="font-bold text-[#0F2C59] underline">
+          <a href={`tel:${COMPANY_DATA.phoneRaw}`} className="font-bold text-[#480CA8] underline hover:text-[#F72585] transition-colors">
             {COMPANY_DATA.phone}
           </a>
         </div>
@@ -145,8 +145,8 @@ export function QuoteForm({
 
         {/* Section 1: Contact Information */}
         <div className="space-y-4">
-          <h4 className="text-xs font-black uppercase tracking-wider text-[#0F2C59] pb-2 border-b border-slate-100 flex items-center gap-2">
-            <Building className="w-4 h-4 text-[#FF6B00]" />
+          <h4 className="text-xs font-black uppercase tracking-wider text-[#480CA8] pb-2 border-b border-[#EADBFC] flex items-center gap-2">
+            <Building className="w-4 h-4 text-[#F72585]" />
             1. Datos de Contacto y Empresa
           </h4>
 
@@ -162,7 +162,7 @@ export function QuoteForm({
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                   errors.firstName
                     ? "border-red-400 bg-red-50/50"
-                    : "border-slate-300 focus:border-[#0F2C59]"
+                    : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
                 }`}
               />
               {errors.firstName && (
@@ -181,7 +181,7 @@ export function QuoteForm({
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                   errors.lastName
                     ? "border-red-400 bg-red-50/50"
-                    : "border-slate-300 focus:border-[#0F2C59]"
+                    : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
                 }`}
               />
               {errors.lastName && (
@@ -199,7 +199,7 @@ export function QuoteForm({
                 type="text"
                 {...register("company")}
                 placeholder="Nombre de tu empresa"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#0F2C59]"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
               />
             </div>
 
@@ -214,7 +214,7 @@ export function QuoteForm({
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                   errors.phone
                     ? "border-red-400 bg-red-50/50"
-                    : "border-slate-300 focus:border-[#0F2C59]"
+                    : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
                 }`}
               />
               {errors.phone && (
@@ -233,7 +233,7 @@ export function QuoteForm({
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                   errors.email
                     ? "border-red-400 bg-red-50/50"
-                    : "border-slate-300 focus:border-[#0F2C59]"
+                    : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
                 }`}
               />
               {errors.email && (
@@ -245,8 +245,8 @@ export function QuoteForm({
 
         {/* Section 2: Service & Vehicle Selection */}
         <div className="space-y-4 pt-2">
-          <h4 className="text-xs font-black uppercase tracking-wider text-[#0F2C59] pb-2 border-b border-slate-100 flex items-center gap-2">
-            <Truck className="w-4 h-4 text-[#FF6B00]" />
+          <h4 className="text-xs font-black uppercase tracking-wider text-[#480CA8] pb-2 border-b border-[#EADBFC] flex items-center gap-2">
+            <Truck className="w-4 h-4 text-[#F72585]" />
             2. Tipo de Servicio y Vehículo Requerido
           </h4>
 
@@ -257,7 +257,7 @@ export function QuoteForm({
               </label>
               <select
                 {...register("serviceType")}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#0F2C59] bg-white"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7] bg-white"
               >
                 <option value="distribucion">Distribución Programada & Multipunto</option>
                 <option value="ultima-milla">Última Milla B2B / B2C</option>
@@ -275,7 +275,7 @@ export function QuoteForm({
               </label>
               <select
                 {...register("vehicleType")}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#0F2C59] bg-white"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7] bg-white"
               >
                 <option value="furgon">Furgón Utilitario (1.6 Ton / 10.5 m³)</option>
                 <option value="camioneta">Camioneta Urbana (850 Kg / 3.5 m³)</option>
@@ -299,7 +299,7 @@ export function QuoteForm({
                 type="text"
                 {...register("estimatedVolume")}
                 placeholder="Ej: 50 entregas/día o 6 pallets"
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#0F2C59]"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
               />
             </div>
 
@@ -309,7 +309,7 @@ export function QuoteForm({
               </label>
               <select
                 {...register("frequency")}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#0F2C59] bg-white"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7] bg-white"
               >
                 <option value="diario">Ruta Diaria Recurrente</option>
                 <option value="semanal">Semanal (Días fijos)</option>
@@ -323,8 +323,8 @@ export function QuoteForm({
 
         {/* Section 3: Origin & Destination */}
         <div className="space-y-4 pt-2">
-          <h4 className="text-xs font-black uppercase tracking-wider text-[#0F2C59] pb-2 border-b border-slate-100 flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-[#FF6B00]" />
+          <h4 className="text-xs font-black uppercase tracking-wider text-[#480CA8] pb-2 border-b border-[#EADBFC] flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-[#F72585]" />
             3. Ruta, Origen y Destino
           </h4>
 
@@ -335,7 +335,7 @@ export function QuoteForm({
               </label>
               <select
                 {...register("region")}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#0F2C59] bg-white"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7] bg-white"
               >
                 {COMPANY_DATA.coverageRegions.map((reg) => (
                   <option key={reg.id} value={reg.id}>
@@ -357,7 +357,7 @@ export function QuoteForm({
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                   errors.city
                     ? "border-red-400 bg-red-50/50"
-                    : "border-slate-300 focus:border-[#0F2C59]"
+                    : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
                 }`}
               />
               {errors.city && (
@@ -378,7 +378,7 @@ export function QuoteForm({
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                   errors.origin
                     ? "border-red-400 bg-red-50/50"
-                    : "border-slate-300 focus:border-[#0F2C59]"
+                    : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
                 }`}
               />
               {errors.origin && (
@@ -397,7 +397,7 @@ export function QuoteForm({
                 className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                   errors.destination
                     ? "border-red-400 bg-red-50/50"
-                    : "border-slate-300 focus:border-[#0F2C59]"
+                    : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
                 }`}
               />
               {errors.destination && (
@@ -417,7 +417,7 @@ export function QuoteForm({
               className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
                 errors.description
                   ? "border-red-400 bg-red-50/50"
-                  : "border-slate-300 focus:border-[#0F2C59]"
+                  : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
               }`}
             />
             {errors.description && (

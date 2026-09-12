@@ -206,14 +206,14 @@ export async function sendQuoteNotification(data: SendQuoteEmailParams) {
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #0f172a; margin: 0; padding: 20px; }
       .container { max-width: 620px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
       .header { background: linear-gradient(135deg, #480CA8 0%, #240046 100%); padding: 30px 24px; text-align: center; color: #ffffff; }
-      .badge { display: inline-block; background: #FF6B00; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+      .badge { display: inline-block; background: #F72585; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
       .title { margin: 0; font-size: 22px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px; }
       .content { padding: 30px 24px; }
       .field-card { background: #fdf8ff; border: 1px solid #eadbfc; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
       .field-label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #6c5e8a; letter-spacing: 0.5px; margin-bottom: 3px; }
       .field-value { font-size: 14px; font-weight: 600; color: #10002b; }
-      .route-box { background: #0f2c59; color: #ffffff; border-radius: 12px; padding: 16px; margin: 16px 0; text-align: center; }
-      .message-box { background: #f8fafc; border-left: 4px solid #FF6B00; padding: 16px; border-radius: 4px 12px 12px 4px; font-size: 14px; line-height: 1.6; color: #334155; margin-top: 16px; }
+      .route-box { background: linear-gradient(135deg, #240046 0%, #480CA8 100%); color: #ffffff; border-radius: 12px; padding: 16px; margin: 16px 0; text-align: center; }
+      .message-box { background: #fdf8ff; border-left: 4px solid #480CA8; padding: 16px; border-radius: 4px 12px 12px 4px; font-size: 14px; line-height: 1.6; color: #334155; margin-top: 16px; }
       .footer { background: #f8fafc; padding: 20px 24px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; text-align: center; }
       .btn { display: inline-block; background: #F72585; color: #ffffff !important; text-decoration: none; font-weight: bold; font-size: 13px; padding: 12px 24px; border-radius: 8px; margin-top: 16px; }
     </style>

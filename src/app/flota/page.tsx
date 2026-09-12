@@ -83,7 +83,7 @@ export default function FlotaPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl font-black text-[#0F2C59]">
+                    <h3 className="text-2xl sm:text-3xl font-black text-[#480CA8]">
                       {veh.title}
                     </h3>
 
@@ -93,31 +93,31 @@ export default function FlotaPage() {
 
                     {/* Spec Indicators */}
                     <div className="grid grid-cols-3 gap-3 pt-2">
-                      <div className="bg-white p-3 rounded-xl border border-slate-200 text-center">
-                        <span className="text-[10px] font-bold uppercase text-slate-400 block">
+                      <div className="bg-white p-3 rounded-xl border border-[#EADBFC] text-center">
+                        <span className="text-[10px] font-bold uppercase text-purple-400 block">
                           Capacidad Carga
                         </span>
-                        <span className="text-base font-black text-[#0F2C59]">
+                        <span className="text-base font-black text-[#480CA8]">
                           {veh.capacityKg >= 1000
                             ? `${(veh.capacityKg / 1000).toFixed(1)} Ton`
                             : `${veh.capacityKg} Kg`}
                         </span>
                       </div>
 
-                      <div className="bg-white p-3 rounded-xl border border-slate-200 text-center">
-                        <span className="text-[10px] font-bold uppercase text-slate-400 block">
+                      <div className="bg-white p-3 rounded-xl border border-[#EADBFC] text-center">
+                        <span className="text-[10px] font-bold uppercase text-purple-400 block">
                           Volumen Útil
                         </span>
-                        <span className="text-base font-black text-[#0F2C59]">
+                        <span className="text-base font-black text-[#480CA8]">
                           {veh.volumeM3} m³
                         </span>
                       </div>
 
-                      <div className="bg-white p-3 rounded-xl border border-slate-200 text-center">
-                        <span className="text-[10px] font-bold uppercase text-slate-400 block">
+                      <div className="bg-white p-3 rounded-xl border border-[#EADBFC] text-center">
+                        <span className="text-[10px] font-bold uppercase text-purple-400 block">
                           Capacidad Pallets
                         </span>
-                        <span className="text-base font-black text-[#00C29A]">
+                        <span className="text-base font-black text-[#F72585]">
                           {veh.palletCapacity ? `${veh.palletCapacity} Std` : "N/A"}
                         </span>
                       </div>
@@ -134,7 +134,7 @@ export default function FlotaPage() {
                             key={fIdx}
                             className="flex items-center gap-2 text-xs text-slate-700"
                           >
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#00C29A] shrink-0" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#F72585] shrink-0" />
                             <span>{feat}</span>
                           </div>
                         ))}

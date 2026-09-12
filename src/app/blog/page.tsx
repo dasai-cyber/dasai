@@ -44,7 +44,7 @@ export default function BlogPage() {
                   </div>
 
                   <Link href={`/blog/${post.slug}`}>
-                    <h3 className="text-xl font-extrabold text-[#0F2C59] group-hover:text-[#FF6B00] transition-colors leading-snug mb-3">
+                    <h3 className="text-xl font-extrabold text-[#10002B] group-hover:text-[#F72585] transition-colors leading-snug mb-3">
                       {post.title}
                     </h3>
                   </Link>
@@ -56,7 +56,7 @@ export default function BlogPage() {
 
                 <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#0F2C59] text-white flex items-center justify-center text-xs font-bold">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#480CA8] to-[#7209B7] text-white flex items-center justify-center text-xs font-bold">
                       {post.author.name[0]}
                     </div>
                     <div>
@@ -71,7 +71,7 @@ export default function BlogPage() {
 
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="text-xs font-bold text-[#0F2C59] group-hover:text-[#FF6B00] flex items-center gap-1"
+                    className="text-xs font-bold text-[#480CA8] group-hover:text-[#F72585] flex items-center gap-1"
                   >
                     Leer &rarr;
                   </Link>

@@ -46,10 +46,10 @@ function CounterItem({
 
   return (
     <div ref={ref} className="text-center sm:text-left p-4 sm:p-6">
-      <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0F2C59] tracking-tight">
+      <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#480CA8] tracking-tight">
         <span>{prefix}</span>
         <span>{value % 1 === 0 ? Math.floor(count) : count.toFixed(1)}</span>
-        <span className="text-[#FF6B00]">{suffix}</span>
+        <span className="text-[#F72585]">{suffix}</span>
       </div>
       <div className="mt-2 text-sm sm:text-base font-extrabold text-slate-800">
         {label}

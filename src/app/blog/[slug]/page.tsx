@@ -57,7 +57,7 @@ export default async function BlogPostPage({
           {/* Post Meta Header */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-8 mb-8 border-b border-slate-200 text-xs text-slate-500">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#0F2C59] text-white flex items-center justify-center font-bold text-sm">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#480CA8] to-[#7209B7] text-white flex items-center justify-center font-bold text-sm">
                 {post.author.name[0]}
               </div>
               <div>

@@ -62,10 +62,10 @@ export default function EcommercePage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6B00]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#F72585]">
                 Velocidad para Ventas Digitales
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F2C59] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#10002B] tracking-tight leading-tight">
                 El motor logístico que tu tienda online necesita para crecer
               </h2>
               <p className="text-slate-600 leading-relaxed text-base">
@@ -91,7 +91,7 @@ export default function EcommercePage() {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-50">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#EADBFC] bg-[#FCF9FF]">
                 <Image
                   src="/images/fleet/camioneta.svg"
                   alt="Reparto e-commerce DASAI"
@@ -114,12 +114,12 @@ export default function EcommercePage() {
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-3"
+                  className="p-6 rounded-3xl bg-[#FCF9FF] border border-[#EADBFC] space-y-3"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-[#0F2C59] text-white flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-2xl bg-[#480CA8] text-white flex items-center justify-center shadow-md shadow-[#480CA8]/20">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h4 className="text-base font-bold text-[#0F2C59]">{f.title}</h4>
+                  <h4 className="text-base font-bold text-[#480CA8]">{f.title}</h4>
                   <p className="text-xs text-slate-500 leading-relaxed">{f.desc}</p>
                 </div>
               );

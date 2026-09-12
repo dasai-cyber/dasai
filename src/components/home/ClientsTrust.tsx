@@ -19,8 +19,8 @@ export function ClientsTrust() {
               key={idx}
               className="p-5 rounded-2xl bg-slate-50 border border-slate-100 text-center hover:bg-slate-100 transition-colors flex flex-col items-center justify-center gap-1.5 group"
             >
-              <Building2 className="w-5 h-5 text-slate-400 group-hover:text-[#0F2C59] transition-colors" />
-              <span className="text-xs font-black text-slate-700 tracking-wider">
+              <Building2 className="w-5 h-5 text-purple-400 group-hover:text-[#F72585] transition-colors" />
+              <span className="text-xs font-black text-slate-700 tracking-wider group-hover:text-[#480CA8] transition-colors">
                 {client.name.split(" — ")[0]}
               </span>
               <span className="text-[10px] font-medium text-slate-400">

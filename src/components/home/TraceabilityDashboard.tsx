@@ -31,11 +31,11 @@ export function TraceabilityDashboard() {
   const sampleCodes = ["DAS-8921", "DAS-4012", "DAS-1088"];
 
   return (
-    <AnimatedSection className="py-20 sm:py-28 bg-[#0B132B] text-white relative overflow-hidden">
+    <AnimatedSection className="py-20 sm:py-28 bg-[#10002B] text-white relative overflow-hidden">
       {/* Background Graphic Grid */}
-      <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#38BDF8_1.2px,transparent_1.2px)] [background-size:28px_28px] pointer-events-none" />
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#00C29A] rounded-full blur-[140px] opacity-15 pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#FF6B00] rounded-full blur-[160px] opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#F72585_1.2px,transparent_1.2px)] [background-size:28px_28px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#7209B7] rounded-full blur-[140px] opacity-20 pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-96 h-96 bg-[#F72585] rounded-full blur-[160px] opacity-15 pointer-events-none" />
 
       <Container className="relative z-10">
         <SectionTitle
@@ -148,7 +148,7 @@ export function TraceabilityDashboard() {
                 <span className="text-xs font-mono font-bold text-[#38BDF8]">
                   DESPACHO #DAS-8921
                 </span>
-                <span className="text-xs font-bold text-[#FF8A3D] bg-[#FF6B00]/15 px-2.5 py-1 rounded-full border border-[#FF6B00]/30">
+                <span className="text-xs font-bold text-[#F72585] bg-[#F72585]/15 px-2.5 py-1 rounded-full border border-[#F72585]/30">
                   En Reparto
                 </span>
               </div>

@@ -112,10 +112,10 @@ export default function NosotrosPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6B00]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#F72585]">
                 Nuestra Trayectoria
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F2C59] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#10002B] tracking-tight leading-tight">
                 Más de una década moviendo la carga de empresas que no pueden detenerse
               </h2>
               <p className="text-slate-600 leading-relaxed text-base">
@@ -126,14 +126,14 @@ export default function NosotrosPage() {
               </p>
 
               <div className="pt-4 grid grid-cols-2 gap-4 border-t border-slate-100">
-                <div className="bg-slate-50 p-4 rounded-2xl">
-                  <span className="text-3xl font-black text-[#0F2C59]">+500K</span>
+                <div className="bg-[#FCF9FF] p-4 rounded-2xl border border-[#EADBFC]">
+                  <span className="text-3xl font-black text-[#480CA8]">+500K</span>
                   <p className="text-xs font-bold text-slate-700 mt-1">
                     Entregas completadas
                   </p>
                 </div>
-                <div className="bg-slate-50 p-4 rounded-2xl">
-                  <span className="text-3xl font-black text-[#00C29A]">99.2%</span>
+                <div className="bg-[#FCF9FF] p-4 rounded-2xl border border-[#EADBFC]">
+                  <span className="text-3xl font-black text-[#F72585]">99.2%</span>
                   <p className="text-xs font-bold text-slate-700 mt-1">
                     Efectividad en entregas (OTIF)
                   </p>
@@ -142,7 +142,7 @@ export default function NosotrosPage() {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-50">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#EADBFC] bg-[#FCF9FF]">
                 <Image
                   src="/images/fleet/camion-pesado.svg"
                   alt="Camión pesado DASAI"
@@ -156,26 +156,26 @@ export default function NosotrosPage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-20 bg-slate-50 border-y border-slate-200">
+      <section className="py-20 bg-[#FCF9FF] border-y border-[#EADBFC]">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* Mission */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-[#0F2C59] text-white flex items-center justify-center shadow-md">
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#EADBFC] shadow-sm space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-[#480CA8] text-white flex items-center justify-center shadow-md shadow-[#480CA8]/20">
                 <Target className="w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-extrabold text-[#0F2C59]">Nuestra Misión</h3>
+              <h3 className="text-2xl font-extrabold text-[#480CA8]">Nuestra Misión</h3>
               <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
                 Proveer soluciones integrales de transporte, distribución y última milla que impulsen la competitividad y tranquilidad de nuestros clientes, mediante una flota moderna, tecnología de punta y un equipo humano con vocación de servicio.
               </p>
             </div>
 
             {/* Vision */}
-            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-4">
-              <div className="w-14 h-14 rounded-2xl bg-[#FF6B00] text-white flex items-center justify-center shadow-md">
+            <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#EADBFC] shadow-sm space-y-4">
+              <div className="w-14 h-14 rounded-2xl bg-[#F72585] text-white flex items-center justify-center shadow-md shadow-[#F72585]/20">
                 <Compass className="w-7 h-7" />
               </div>
-              <h3 className="text-2xl font-extrabold text-[#0F2C59]">Nuestra Visión</h3>
+              <h3 className="text-2xl font-extrabold text-[#480CA8]">Nuestra Visión</h3>
               <p className="text-slate-600 leading-relaxed text-sm sm:text-base">
                 Consolidarnos como el operador logístico y de transporte terrestre de referencia en Chile por nuestra excelencia operacional, innovación tecnológica, sustentabilidad de flota y cercanía con nuestros aliados comerciales.
               </p>
@@ -199,12 +199,12 @@ export default function NosotrosPage() {
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-3xl p-7 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0F2C59]/30 transition-all duration-300 space-y-4"
+                  className="bg-white rounded-3xl p-7 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#480CA8]/30 transition-all duration-300 space-y-4"
                 >
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${v.color}`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h4 className="text-xl font-bold text-[#0F2C59]">{v.title}</h4>
+                  <h4 className="text-xl font-bold text-[#480CA8]">{v.title}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {v.desc}
                   </p>
@@ -216,7 +216,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* Team & Operations Structure */}
-      <section className="py-20 bg-slate-50 border-t border-slate-200">
+      <section className="py-20 bg-[#FCF9FF] border-t border-[#EADBFC]">
         <Container>
           <SectionTitle
             badge="Estructura Operativa"
@@ -230,15 +230,15 @@ export default function NosotrosPage() {
               return (
                 <div
                   key={idx}
-                  className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3"
+                  className="bg-white rounded-3xl p-6 border border-[#EADBFC] shadow-sm space-y-3"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-[#0F2C59]/5 text-[#0F2C59] flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-2xl bg-[#480CA8]/10 text-[#480CA8] flex items-center justify-center">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h4 className="text-base font-extrabold text-[#0F2C59]">
+                  <h4 className="text-base font-extrabold text-[#480CA8]">
                     {team.name}
                   </h4>
-                  <span className="text-xs font-bold text-[#FF6B00] block">
+                  <span className="text-xs font-bold text-[#F72585] block">
                     {team.role}
                   </span>
                   <p className="text-xs text-slate-500 leading-relaxed">

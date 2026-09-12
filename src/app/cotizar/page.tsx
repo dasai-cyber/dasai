@@ -55,11 +55,11 @@ function CotizarContent({ searchParams }: { searchParams: { [key: string]: strin
               {/* SLA Guarantee Box */}
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-50 text-[#FF6B00] flex items-center justify-center font-bold">
+                  <div className="w-12 h-12 rounded-2xl bg-pink-50 text-[#F72585] flex items-center justify-center font-bold">
                     <Clock className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-black text-[#0F2C59]">
+                    <h3 className="text-lg font-black text-[#480CA8]">
                       Compromiso de Respuesta 2 Horas
                     </h3>
                     <p className="text-xs text-slate-500">
@@ -70,29 +70,29 @@ function CotizarContent({ searchParams }: { searchParams: { [key: string]: strin
 
                 <ul className="space-y-3 pt-3 border-t border-slate-100 text-xs text-slate-600">
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#00C29A] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#F72585] shrink-0 mt-0.5" />
                     <span>Propuesta tarifaria clara y sin cargos sorpresa.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#00C29A] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#F72585] shrink-0 mt-0.5" />
                     <span>Disponibilidad inmediata de flota propia y conductores.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#00C29A] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#F72585] shrink-0 mt-0.5" />
                     <span>Planes preferenciales para contratos recurrentes y e-commerce.</span>
                   </li>
                 </ul>
               </div>
 
               {/* Direct WhatsApp Callout */}
-              <div className="bg-[#0F2C59] text-white rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#FF8A3D] block">
+              <div className="bg-gradient-to-r from-[#240046] to-[#480CA8] text-white rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl border border-[#7209B7]/30">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#F72585] block font-extrabold">
                   ¿Requieres asistencia inmediata?
                 </span>
                 <h4 className="text-xl font-extrabold text-white">
                   Habla directamente con un asesor de tráfico
                 </h4>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-purple-100 leading-relaxed">
                   Si tu carga es urgente o requieres coordinar un retiro para hoy mismo, escríbenos por WhatsApp o comunícate a nuestra central telefónica.
                 </p>
 
@@ -112,7 +112,7 @@ function CotizarContent({ searchParams }: { searchParams: { [key: string]: strin
                     href={`tel:${COMPANY_DATA.phoneRaw}`}
                     className="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 text-xs font-bold transition-colors w-full"
                   >
-                    <Phone className="w-4 h-4 text-[#00C29A]" />
+                    <Phone className="w-4 h-4 text-[#F72585]" />
                     Central: {COMPANY_DATA.phone}
                   </a>
                 </div>

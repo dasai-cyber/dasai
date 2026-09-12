@@ -23,7 +23,7 @@ export function QuickQuoteSection() {
 
             <div className="space-y-4 pt-2">
               <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs">
-                <Clock className="w-5 h-5 text-[#FF6B00] shrink-0 mt-0.5" />
+                <Clock className="w-5 h-5 text-[#F72585] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-sm font-bold text-slate-900">
                     Respuesta Comercial Rápida
@@ -60,17 +60,17 @@ export function QuickQuoteSection() {
             </div>
 
             {/* Direct Phone Call Card */}
-            <div className="p-5 rounded-2xl bg-[#0F2C59] text-white space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-[#240046] to-[#480CA8] text-white space-y-2 border border-[#7209B7]/30 shadow-md">
+              <span className="text-xs font-bold uppercase tracking-wider text-pink-200">
                 ¿Prefieres hablar directamente?
               </span>
               <div className="text-lg font-black text-white flex items-center gap-2">
-                <Phone className="w-5 h-5 text-[#FF8A3D]" />
+                <Phone className="w-5 h-5 text-[#F72585]" />
                 <a href={`tel:${COMPANY_DATA.phoneRaw}`} className="hover:underline">
                   {COMPANY_DATA.phone}
                 </a>
               </div>
-              <p className="text-xs text-slate-300">
+              <p className="text-xs text-purple-200">
                 Lunes a Viernes de 08:00 a 19:00 hrs.
               </p>
             </div>

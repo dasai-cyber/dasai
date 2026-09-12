@@ -39,12 +39,12 @@ export function ServicesSection() {
             return (
               <div
                 key={service.slug}
-                className="group relative rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#0F2C59]/40 transition-all duration-300 flex flex-col justify-between"
+                className="group relative rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#480CA8]/40 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   {/* Top Header Badge & Icon */}
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-[#0F2C59]/5 text-[#0F2C59] group-hover:bg-[#0F2C59] group-hover:text-white flex items-center justify-center transition-colors duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-[#480CA8]/10 text-[#480CA8] group-hover:bg-[#480CA8] group-hover:text-white flex items-center justify-center transition-colors duration-300">
                       <IconComponent className="w-6 h-6" />
                     </div>
                     <Badge variant="accent" size="sm">
@@ -53,7 +53,7 @@ export function ServicesSection() {
                   </div>
 
                   {/* Title & Summary */}
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#0F2C59] transition-colors mb-3">
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#480CA8] transition-colors mb-3">
                     {service.shortTitle}
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
@@ -71,7 +71,7 @@ export function ServicesSection() {
                           key={idx}
                           className="flex items-start gap-2 text-xs text-slate-600"
                         >
-                          <Check className="w-3.5 h-3.5 text-[#00C29A] shrink-0 mt-0.5" />
+                          <Check className="w-3.5 h-3.5 text-[#F72585] shrink-0 mt-0.5" />
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -83,7 +83,7 @@ export function ServicesSection() {
                 <div className="pt-4 border-t border-slate-100">
                   <Link
                     href={`/servicios/${service.slug}`}
-                    className="inline-flex items-center justify-between w-full text-xs font-bold text-[#0F2C59] group-hover:text-[#FF6B00] transition-colors py-2"
+                    className="inline-flex items-center justify-between w-full text-xs font-bold text-[#480CA8] group-hover:text-[#F72585] transition-colors py-2"
                   >
                     <span>Ver servicio completo</span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
@@ -95,9 +95,9 @@ export function ServicesSection() {
         </div>
 
         {/* Bottom Fast Quote Prompt */}
-        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-[#FCF9FF] border border-[#EADBFC] flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h4 className="text-lg font-bold text-[#0F2C59]">
+            <h4 className="text-lg font-bold text-[#10002B]">
               ¿Tienes una operación con requerimientos especiales?
             </h4>
             <p className="text-sm text-slate-600 mt-1">

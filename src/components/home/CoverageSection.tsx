@@ -56,36 +56,36 @@ export function CoverageSection() {
                   onClick={() => setActiveRegion(region.id)}
                   className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${
                     activeRegion === region.id
-                      ? "bg-[#0F2C59] text-white shadow-md"
-                      : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                      ? "bg-[#480CA8] text-white shadow-md shadow-[#480CA8]/20"
+                      : "bg-[#F3EEF9] text-[#480CA8] hover:bg-[#EADBFC]"
                   }`}
                 >
-                  <MapPin className="w-3.5 h-3.5" />
+                  <MapPin className="w-3.5 h-3.5 text-[#F72585]" />
                   <span>{region.name}</span>
                 </button>
               ))}
             </div>
 
             {/* Active Region Detail Card */}
-            <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-200">
+            <div className="bg-[#FCF9FF] rounded-3xl p-6 sm:p-8 border border-[#EADBFC] space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-[#EADBFC]">
                 <div>
                   <Badge variant="accent" size="sm">
                     {currentRegion.code} • Zona Activa
                   </Badge>
-                  <h3 className="text-2xl font-black text-[#0F2C59] mt-2">
+                  <h3 className="text-2xl font-black text-[#10002B] mt-2">
                     {currentRegion.name}
                   </h3>
                 </div>
-                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm text-xs font-bold text-slate-800">
-                  <Clock className="w-4 h-4 text-[#FF6B00]" />
+                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-[#EADBFC] shadow-sm text-xs font-bold text-slate-800">
+                  <Clock className="w-4 h-4 text-[#F72585]" />
                   <span>Tiempo de Tránsito: {currentRegion.transitTime}</span>
                 </div>
               </div>
 
               {/* Hub Information */}
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-100 text-[#0F2C59] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-pink-100 text-[#F72585] flex items-center justify-center shrink-0 font-bold">
                   <Building className="w-5 h-5" />
                 </div>
                 <div>

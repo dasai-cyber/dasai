@@ -61,10 +61,10 @@ export default function TransporteCargaPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6B00]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#F72585]">
                 Fuerza y Seguridad en Carretera
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F2C59] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#10002B] tracking-tight leading-tight">
                 Camiones preparados para el rigor del transporte industrial
               </h2>
               <p className="text-slate-600 leading-relaxed text-base">
@@ -90,7 +90,7 @@ export default function TransporteCargaPage() {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-50">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#EADBFC] bg-[#FCF9FF]">
                 <Image
                   src="/images/fleet/camion-pesado.svg"
                   alt="Camión pesado DASAI"
@@ -111,10 +111,10 @@ export default function TransporteCargaPage() {
             {specs.map((spec, idx) => (
               <div
                 key={idx}
-                className="p-7 rounded-3xl bg-slate-50 border border-slate-200 space-y-3"
+                className="p-7 rounded-3xl bg-[#FCF9FF] border border-[#EADBFC] space-y-3"
               >
-                <h4 className="text-lg font-bold text-[#0F2C59]">{spec.title}</h4>
-                <div className="inline-block px-3 py-1 rounded-lg bg-blue-50 text-blue-900 font-bold text-xs border border-blue-100">
+                <h4 className="text-lg font-bold text-[#480CA8]">{spec.title}</h4>
+                <div className="inline-block px-3 py-1 rounded-lg bg-purple-50 text-[#480CA8] font-bold text-xs border border-purple-100">
                   {spec.capacity}
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">{spec.usage}</p>

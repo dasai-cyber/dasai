@@ -58,10 +58,10 @@ export default function DistribucionPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FF6B00]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#F72585]">
                 Abastecimiento Comercial Eficiente
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F2C59] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#10002B] tracking-tight leading-tight">
                 Rutas periódicas diseñadas para no quebrar stock en sala
               </h2>
               <p className="text-slate-600 leading-relaxed text-base">
@@ -87,7 +87,7 @@ export default function DistribucionPage() {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-50">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#EADBFC] bg-[#FCF9FF]">
                 <Image
                   src="/images/fleet/furgon.svg"
                   alt="Furgón utilitario de distribución DASAI"
@@ -108,10 +108,10 @@ export default function DistribucionPage() {
             {steps.map((s, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-3"
+                className="p-6 rounded-3xl bg-[#FCF9FF] border border-[#EADBFC] space-y-3"
               >
-                <div className="text-2xl font-black text-[#FF6B00]">0{idx + 1}</div>
-                <h4 className="text-base font-bold text-[#0F2C59]">{s.title}</h4>
+                <div className="text-2xl font-black text-[#F72585]">0{idx + 1}</div>
+                <h4 className="text-base font-bold text-[#480CA8]">{s.title}</h4>
                 <p className="text-xs text-slate-500 leading-relaxed">{s.desc}</p>
               </div>
             ))}

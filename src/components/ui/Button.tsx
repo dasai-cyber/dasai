@@ -33,17 +33,17 @@ export function Button({
 
   const variantStyles = {
     primary:
-      "bg-[#0F2C59] text-white hover:bg-[#081B38] focus:ring-[#0F2C59] shadow-md hover:shadow-lg",
+      "bg-[#480CA8] text-white hover:bg-[#3A0CA3] focus:ring-[#480CA8] shadow-md shadow-[#480CA8]/20 hover:shadow-lg",
     secondary:
-      "bg-[#00C29A] text-white hover:bg-[#00A885] focus:ring-[#00C29A] shadow-md",
+      "bg-[#7209B7] text-white hover:bg-[#560BAD] focus:ring-[#7209B7] shadow-md shadow-[#7209B7]/20",
     accent:
-      "bg-[#FF6B00] text-white hover:bg-[#E05E00] focus:ring-[#FF6B00] shadow-accent hover:shadow-lg",
+      "bg-gradient-to-r from-[#7209B7] to-[#F72585] text-white hover:from-[#560BAD] hover:to-[#D81159] focus:ring-[#F72585] shadow-md shadow-[#F72585]/25 hover:shadow-lg hover:shadow-[#F72585]/35",
     outline:
-      "border-2 border-[#0F2C59] text-[#0F2C59] hover:bg-[#0F2C59] hover:text-white focus:ring-[#0F2C59]",
+      "border-2 border-[#480CA8] text-[#480CA8] hover:bg-[#480CA8] hover:text-white focus:ring-[#480CA8]",
     ghost:
-      "text-[#0F2C59] hover:bg-slate-100 focus:ring-slate-300",
+      "text-[#480CA8] hover:bg-[#F3EEF9] focus:ring-[#7209B7]",
     white:
-      "bg-white text-[#0F2C59] hover:bg-slate-100 focus:ring-white shadow-lg",
+      "bg-white text-[#480CA8] hover:bg-[#FCF9FF] hover:text-[#7209B7] focus:ring-white shadow-lg",
   };
 
   const sizeStyles = {

@@ -60,7 +60,7 @@ export function ContactForm() {
         <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-8 h-8" />
         </div>
-        <h3 className="text-xl font-bold text-[#0F2C59]">
+        <h3 className="text-xl font-bold text-[#480CA8]">
           ¡Mensaje Enviado con Éxito!
         </h3>
         <p className="text-xs text-slate-600 max-w-sm mx-auto">
@@ -91,7 +91,7 @@ export function ContactForm() {
           {...register("name")}
           placeholder="Juan Pérez"
           className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
-            errors.name ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#0F2C59]"
+            errors.name ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
           }`}
         />
         {errors.name && (
@@ -109,7 +109,7 @@ export function ContactForm() {
             {...register("email")}
             placeholder="juan@empresa.cl"
             className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
-              errors.email ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#0F2C59]"
+              errors.email ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
             }`}
           />
           {errors.email && (
@@ -126,7 +126,7 @@ export function ContactForm() {
             {...register("phone")}
             placeholder="+56 9 1234 5678"
             className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
-              errors.phone ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#0F2C59]"
+              errors.phone ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
             }`}
           />
           {errors.phone && (
@@ -144,7 +144,7 @@ export function ContactForm() {
           {...register("subject")}
           placeholder="Consulta comercial / Alianza operativa"
           className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
-            errors.subject ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#0F2C59]"
+            errors.subject ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
           }`}
         />
         {errors.subject && (
@@ -161,7 +161,7 @@ export function ContactForm() {
           {...register("message")}
           placeholder="Escribe tu mensaje o consulta..."
           className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors ${
-            errors.message ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#0F2C59]"
+            errors.message ? "border-red-400 bg-red-50/50" : "border-slate-300 focus:border-[#7209B7] focus:ring-1 focus:ring-[#7209B7]"
           }`}
         />
         {errors.message && (

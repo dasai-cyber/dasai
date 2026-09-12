@@ -17,19 +17,19 @@ export function ProcessSection() {
 
         <div className="relative">
           {/* Visual Connecting Line (Desktop) */}
-          <div className="hidden lg:block absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-[#0F2C59] via-[#FF6B00] to-[#00C29A] -translate-y-12 z-0" />
+          <div className="hidden lg:block absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-[#480CA8] via-[#7209B7] to-[#F72585] -translate-y-12 z-0" />
 
           {/* 4 Steps Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             {COMPANY_DATA.processSteps.map((step, idx) => (
               <div
                 key={step.step}
-                className="bg-white rounded-3xl p-7 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white rounded-3xl p-7 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#480CA8]/30 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Step Number Circle */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-[#0F2C59] text-white flex items-center justify-center font-black text-xl group-hover:bg-[#FF6B00] transition-colors shadow-md">
+                    <div className="w-14 h-14 rounded-2xl bg-[#480CA8] text-white flex items-center justify-center font-black text-xl group-hover:bg-[#F72585] transition-colors shadow-md shadow-[#480CA8]/20">
                       {step.step}
                     </div>
                     <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
@@ -38,10 +38,10 @@ export function ProcessSection() {
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-[#0F2C59] transition-colors mb-3">
+                  <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-[#480CA8] transition-colors mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-sm font-bold text-[#FF6B00] mb-2">
+                  <p className="text-sm font-bold text-[#F72585] mb-2">
                     {step.description}
                   </p>
                   <p className="text-xs text-slate-500 leading-relaxed">
@@ -49,8 +49,8 @@ export function ProcessSection() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1 text-xs font-bold text-[#00C29A]">
-                  <Check className="w-4 h-4" />
+                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1 text-xs font-bold text-[#7209B7]">
+                  <Check className="w-4 h-4 text-[#F72585]" />
                   <span>Control de calidad DASAI</span>
                 </div>
               </div>

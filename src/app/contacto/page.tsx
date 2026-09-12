@@ -41,13 +41,13 @@ export default function ContactoPage() {
             {/* Contact Info Cards (Col 1-5) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
-                <h3 className="text-xl font-extrabold text-[#0F2C59] pb-4 border-b border-slate-100">
+                <h3 className="text-xl font-extrabold text-[#480CA8] pb-4 border-b border-[#EADBFC]">
                   Canales de Atención Directa
                 </h3>
 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#FF6B00] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-pink-50 text-[#F72585] flex items-center justify-center shrink-0">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
@@ -61,7 +61,7 @@ export default function ContactoPage() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-[#00C29A] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#7209B7] flex items-center justify-center shrink-0">
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>
@@ -69,7 +69,7 @@ export default function ContactoPage() {
                         Central Telefónica
                       </span>
                       <p className="text-sm font-bold text-slate-800 mt-0.5">
-                        <a href={`tel:${COMPANY_DATA.phoneRaw}`} className="hover:text-[#0F2C59]">
+                        <a href={`tel:${COMPANY_DATA.phoneRaw}`} className="hover:text-[#480CA8]">
                           {COMPANY_DATA.phone}
                         </a>
                       </p>
@@ -77,7 +77,7 @@ export default function ContactoPage() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-pink-50 text-[#F72585] flex items-center justify-center shrink-0">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
@@ -85,7 +85,7 @@ export default function ContactoPage() {
                         Correo Corporativo
                       </span>
                       <p className="text-sm font-bold text-slate-800 mt-0.5">
-                        <a href={`mailto:${COMPANY_DATA.email}`} className="hover:text-[#0F2C59]">
+                        <a href={`mailto:${COMPANY_DATA.email}`} className="hover:text-[#480CA8]">
                           {COMPANY_DATA.email}
                         </a>
                       </p>
@@ -93,7 +93,7 @@ export default function ContactoPage() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#F3EEF9] text-[#7209B7] flex items-center justify-center shrink-0">
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
@@ -126,7 +126,7 @@ export default function ContactoPage() {
             {/* Contact Form & Map (Col 6-12) */}
             <div className="lg:col-span-7 space-y-8">
               <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm space-y-6">
-                <h3 className="text-xl font-extrabold text-[#0F2C59]">
+                <h3 className="text-xl font-extrabold text-[#480CA8]">
                   Envíanos un mensaje
                 </h3>
                 <ContactForm />

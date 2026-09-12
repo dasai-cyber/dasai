@@ -35,11 +35,11 @@ export function FleetSection() {
       : COMPANY_DATA.fleet.filter((item) => item.category === selectedTab);
 
   return (
-    <AnimatedSection className="py-20 sm:py-28 bg-[#0F2C59] text-white relative overflow-hidden" id="flota">
+    <AnimatedSection className="py-20 sm:py-28 bg-[#10002B] text-white relative overflow-hidden" id="flota">
       {/* Background visual graphics */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38BDF8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#00C29A] rounded-full blur-[140px] opacity-15 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#FF6B00] rounded-full blur-[160px] opacity-15 pointer-events-none" />
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#F72585_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#7209B7] rounded-full blur-[140px] opacity-20 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#F72585] rounded-full blur-[160px] opacity-20 pointer-events-none" />
 
       <Container className="relative z-10">
         <SectionTitle
@@ -57,7 +57,7 @@ export function FleetSection() {
               onClick={() => setSelectedTab(cat.id)}
               className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 ${
                 selectedTab === cat.id
-                  ? "bg-[#FF6B00] text-white shadow-accent"
+                  ? "bg-gradient-to-r from-[#7209B7] to-[#F72585] text-white shadow-md shadow-[#F72585]/30"
                   : "bg-white/10 text-slate-300 hover:bg-white/15 hover:text-white"
               }`}
             >
@@ -74,7 +74,7 @@ export function FleetSection() {
               className="group bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 flex flex-col justify-between text-slate-900 transition-all duration-300 hover:-translate-y-1.5"
             >
               {/* Vehicle SVG Image Box */}
-              <div className="relative aspect-[16/10] w-full bg-slate-100 p-4 flex items-center justify-center overflow-hidden">
+              <div className="relative aspect-[16/10] w-full bg-[#FCF9FF] p-4 flex items-center justify-center overflow-hidden border-b border-[#EADBFC]">
                 <Image
                   src={vehicle.image}
                   alt={vehicle.title}
@@ -91,7 +91,7 @@ export function FleetSection() {
               {/* Card Body */}
               <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
                 <div>
-                  <h3 className="text-xl font-extrabold text-[#0F2C59] group-hover:text-[#FF6B00] transition-colors">
+                  <h3 className="text-xl font-extrabold text-[#480CA8] group-hover:text-[#F72585] transition-colors">
                     {vehicle.title}
                   </h3>
                   <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -100,40 +100,40 @@ export function FleetSection() {
 
                   {/* Technical Specs Pills */}
                   <div className="grid grid-cols-3 gap-2 my-4 pt-3 border-t border-slate-100">
-                    <div className="bg-slate-50 p-2.5 rounded-xl text-center">
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    <div className="bg-[#FCF9FF] p-2.5 rounded-xl text-center border border-[#EADBFC]">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-purple-400">
                         Capacidad
                       </div>
-                      <div className="text-sm font-black text-[#0F2C59]">
+                      <div className="text-sm font-black text-[#480CA8]">
                         {vehicle.capacityKg >= 1000
                           ? `${(vehicle.capacityKg / 1000).toFixed(1)} Ton`
                           : `${vehicle.capacityKg} Kg`}
                       </div>
                     </div>
-                    <div className="bg-slate-50 p-2.5 rounded-xl text-center">
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    <div className="bg-[#FCF9FF] p-2.5 rounded-xl text-center border border-[#EADBFC]">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-purple-400">
                         Volumen
                       </div>
-                      <div className="text-sm font-black text-[#0F2C59]">
+                      <div className="text-sm font-black text-[#480CA8]">
                         {vehicle.volumeM3} m³
                       </div>
                     </div>
-                    <div className="bg-slate-50 p-2.5 rounded-xl text-center">
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    <div className="bg-[#FCF9FF] p-2.5 rounded-xl text-center border border-[#EADBFC]">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-purple-400">
                         Pallets
                       </div>
-                      <div className="text-sm font-black text-[#00C29A]">
+                      <div className="text-sm font-black text-[#F72585]">
                         {vehicle.palletCapacity ? `${vehicle.palletCapacity} Std` : "N/A"}
                       </div>
                     </div>
                   </div>
 
                   {/* Recommended Usage Tag */}
-                  <div className="bg-blue-50/70 border border-blue-100 p-3 rounded-xl">
-                    <span className="text-[11px] font-bold text-blue-900 block mb-0.5">
+                  <div className="bg-purple-50 border border-purple-100 p-3 rounded-xl">
+                    <span className="text-[11px] font-bold text-[#480CA8] block mb-0.5">
                       Uso Recomendado:
                     </span>
-                    <span className="text-xs text-blue-800 leading-tight block">
+                    <span className="text-xs text-[#7209B7] leading-tight block">
                       {vehicle.recommendedUsage}
                     </span>
                   </div>
@@ -162,7 +162,7 @@ export function FleetSection() {
             href="/flota"
             variant="outline"
             size="lg"
-            className="border-white/30 text-white hover:bg-white hover:text-[#0F2C59]"
+            className="border-white/30 text-white hover:bg-white hover:text-[#240046]"
           >
             Ver especificaciones técnicas de toda la flota &rarr;
           </Button>

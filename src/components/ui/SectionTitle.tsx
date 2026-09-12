@@ -43,7 +43,7 @@ export function SectionTitle({
       <h2
         className={cn(
           "text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight",
-          isDark ? "text-white" : "text-[#0F2C59]"
+          isDark ? "text-white" : "text-[#10002B]"
         )}
       >
         {title}

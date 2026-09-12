@@ -58,10 +58,10 @@ export function AboutPreview() {
             </div>
 
             {/* Experience Badge Card */}
-            <div className="absolute -bottom-6 -right-4 sm:right-6 bg-[#0F2C59] text-white p-5 rounded-2xl shadow-xl border border-white/10 max-w-xs">
+            <div className="absolute -bottom-6 -right-4 sm:right-6 bg-gradient-to-r from-[#240046] to-[#480CA8] text-white p-5 rounded-2xl shadow-xl border border-[#7209B7]/30 max-w-xs">
               <div className="flex items-center gap-3">
-                <span className="text-3xl font-black text-[#FF8A3D]">+12</span>
-                <div className="text-xs font-semibold leading-tight text-slate-200">
+                <span className="text-3xl font-black text-[#F72585]">+12</span>
+                <div className="text-xs font-semibold leading-tight text-pink-100">
                   Años liderando operaciones logísticas seguras
                 </div>
               </div>
@@ -85,7 +85,7 @@ export function AboutPreview() {
                 return (
                   <div
                     key={idx}
-                    className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-2 hover:border-[#0F2C59]/30 transition-colors"
+                    className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-2 hover:border-[#480CA8]/40 transition-colors"
                   >
                     <div className="flex items-center gap-2.5">
                       <div className={`p-2 rounded-xl shrink-0 ${item.color}`}>
