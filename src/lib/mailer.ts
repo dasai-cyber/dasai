@@ -16,13 +16,18 @@ export function getRecipients(): string[] {
 }
 
 export function getTransporter() {
-  const host = process.env.SMTP_HOST || "smtppro.zoho.com";
+  const rawHost = process.env.SMTP_HOST || "smtp.zoho.com";
+  // Si pusieron smtppro.zoho.com o smtp.zoho.com
+  const host = rawHost.trim();
   const port = Number(process.env.SMTP_PORT) || 465;
-  const user = process.env.SMTP_USER || process.env.ZOHO_EMAIL || "contacto@dasai.cl";
-  const pass = process.env.SMTP_PASS || process.env.ZOHO_PASSWORD || "";
+  const user = (process.env.SMTP_USER || process.env.ZOHO_EMAIL || "contacto@dasai.cl").trim();
+  const rawPass = process.env.SMTP_PASS || process.env.ZOHO_PASSWORD || "";
+  
+  // Limpiar espacios en blanco (Zoho entrega app passwords como 'xxxx xxxx xxxx xxxx')
+  const pass = rawPass.replace(/\s+/g, "").trim();
 
   if (!pass) {
-    console.warn("[Mailer Warning] No se ha configurado SMTP_PASS en las variables de entorno de Vercel. El correo se simulará en logs.");
+    console.warn("[Mailer Warning] No se ha configurado SMTP_PASS en las variables de entorno de Vercel. El correo se simulará.");
     return null;
   }
 
@@ -135,11 +140,11 @@ export async function sendContactNotification({
   `;
 
   if (!transporter) {
-    console.info(`[Mailer] Simulación: Correo de contacto recibido de ${name} (${email}) dirigido a: ${recipients.join(", ")}`);
+    console.info(`[Mailer] Simulación: Correo de contacto de ${name} (${email})`);
     return { success: true, simulated: true };
   }
 
-  const senderEmail = process.env.SMTP_USER || "contacto@dasai.cl";
+  const senderEmail = (process.env.SMTP_USER || "contacto@dasai.cl").trim();
 
   const mailOptions = {
     from: `"Web DASAI" <${senderEmail}>`,
@@ -152,10 +157,10 @@ export async function sendContactNotification({
 
   try {
     const result = await transporter.sendMail(mailOptions);
-    console.log("[Mailer Success] Contacto enviado a:", recipients, "MessageId:", result.messageId);
+    console.log("[Mailer Success] Contacto enviado:", result.messageId);
     return result;
   } catch (err) {
-    console.error("[Mailer Error] Error enviando correo de contacto:", err);
+    console.error("[Mailer Error] Error enviando contacto:", err);
     throw err;
   }
 }
@@ -285,11 +290,11 @@ export async function sendQuoteNotification(data: SendQuoteEmailParams) {
   `;
 
   if (!transporter) {
-    console.info(`[Mailer] Simulación: Cotización de ${data.firstName} ${data.lastName} enviada a: ${recipients.join(", ")}`);
+    console.info(`[Mailer] Simulación: Cotización de ${data.firstName} ${data.lastName}`);
     return { success: true, simulated: true };
   }
 
-  const senderEmail = process.env.SMTP_USER || "contacto@dasai.cl";
+  const senderEmail = (process.env.SMTP_USER || "contacto@dasai.cl").trim();
 
   const mailOptions = {
     from: `"Web DASAI Cotizaciones" <${senderEmail}>`,
@@ -302,7 +307,7 @@ export async function sendQuoteNotification(data: SendQuoteEmailParams) {
 
   try {
     const result = await transporter.sendMail(mailOptions);
-    console.log("[Mailer Success] Cotización enviada a:", recipients, "MessageId:", result.messageId);
+    console.log("[Mailer Success] Cotización enviada:", result.messageId);
     return result;
   } catch (err) {
     console.error("[Mailer Error] Error enviando cotización:", err);
@@ -442,11 +447,11 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
   `;
 
   if (!transporter) {
-    console.info(`[Mailer] Simulación: Postulación de chofer ${data.fullName} (${data.rut}) enviada a: ${recipients.join(", ")}`);
+    console.info(`[Mailer] Simulación: Postulación de chofer ${data.fullName} (${data.rut})`);
     return { success: true, simulated: true };
   }
 
-  const senderEmail = process.env.SMTP_USER || "contacto@dasai.cl";
+  const senderEmail = (process.env.SMTP_USER || "contacto@dasai.cl").trim();
 
   const mailOptions = {
     from: `"Web DASAI Choferes" <${senderEmail}>`,
@@ -459,10 +464,10 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
 
   try {
     const result = await transporter.sendMail(mailOptions);
-    console.log("[Mailer Success] Chofer enviado a:", recipients, "MessageId:", result.messageId);
+    console.log("[Mailer Success] Chofer enviado con éxito a:", recipients, "MessageId:", result.messageId);
     return result;
-  } catch (err) {
-    console.error("[Mailer Error] Error enviando notificación de chofer:", err);
+  } catch (err: any) {
+    console.error("[Mailer Error] Error enviando notificación de chofer:", err?.message || err);
     throw err;
   }
 }
