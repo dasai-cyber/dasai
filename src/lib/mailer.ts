@@ -448,3 +448,216 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
 
   return await sendWithFallback(mailOptions);
 }
+
+export interface SendBotLeadParams {
+  experienceTransport?: string;
+  yearsExperience?: string;
+  licenseType?: string;
+  drivingExperienceCargoPassengers?: string;
+  vehicleType?: string;
+  vehicleOwnership?: string;
+  vehicleYear?: string;
+  vehicleDocValid?: string;
+  communeCity?: string;
+  shiftAvailability?: string;
+  startAvailability?: string;
+  cvUpdated?: string;
+  cvFileName?: string;
+  fullName: string;
+  phone: string;
+  email: string;
+  additionalNotes?: string;
+  requestedContact: boolean;
+  rawAttachment?: {
+    filename: string;
+    content: string; // base64 string
+    contentType?: string;
+  };
+}
+
+export async function sendBotLeadNotification(data: SendBotLeadParams) {
+  const recipients = getRecipients();
+  const senderEmail = (process.env.SMTP_USER || "contacto@dasai.cl").trim();
+
+  const formattedDate = new Intl.DateTimeFormat("es-CL", {
+    dateStyle: "full",
+    timeStyle: "short",
+    timeZone: "America/Santiago",
+  }).format(new Date());
+
+  const htmlContent = `
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #0f172a; margin: 0; padding: 20px; }
+      .container { max-width: 650px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #eadbfc; box-shadow: 0 4px 12px rgba(72, 12, 168, 0.08); }
+      .header { background: linear-gradient(135deg, #240046 0%, #480CA8 50%, #7209B7 100%); padding: 30px 24px; text-align: center; color: #ffffff; }
+      .badge { display: inline-block; background: #25D366; color: #ffffff; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 5px 14px; border-radius: 20px; margin-bottom: 12px; }
+      .title { margin: 0; font-size: 22px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px; }
+      .content { padding: 28px 24px; }
+      .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; color: #480CA8; letter-spacing: 0.5px; margin: 20px 0 10px 0; border-bottom: 2px solid #f3eef9; padding-bottom: 6px; }
+      .grid { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+      .field-card { background: #fdf8ff; border: 1px solid #eadbfc; border-radius: 12px; padding: 12px 16px; flex: 1; min-width: 240px; }
+      .field-label { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #6c5e8a; letter-spacing: 0.5px; margin-bottom: 4px; }
+      .field-value { font-size: 14px; font-weight: 700; color: #10002b; }
+      .highlight-box { background: #25D366/10; border: 1px solid #25D366/30; border-radius: 12px; padding: 16px; margin: 16px 0; }
+      .message-box { background: #f8fafc; border-left: 4px solid #7209B7; padding: 16px; border-radius: 4px 12px 12px 4px; font-size: 14px; line-height: 1.6; color: #334155; margin-top: 12px; }
+      .footer { background: #f8fafc; padding: 20px 24px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; text-align: center; }
+      .btn { display: inline-block; background: #25D366; color: #ffffff !important; text-decoration: none; font-weight: bold; font-size: 14px; padding: 12px 24px; border-radius: 10px; margin-top: 16px; }
+      .btn-purple { display: inline-block; background: #480CA8; color: #ffffff !important; text-decoration: none; font-weight: bold; font-size: 14px; padding: 12px 24px; border-radius: 10px; margin-top: 16px; margin-left: 8px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="badge">💬 Lead WhatsApp Bot DASAI</div>
+        <h1 class="title">Nuevo Prospecto Solicitó Contacto</h1>
+        <p style="margin: 6px 0 0 0; font-size: 13px; opacity: 0.9;">${formattedDate}</p>
+      </div>
+      <div class="content">
+        
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">✅</span>
+          <span style="font-size: 13px; font-weight: 700; color: #166534;">
+            El postulante completó el cuestionario interactivo y confirmó que desea ser contactado por DASAI.
+          </span>
+        </div>
+
+        <div class="section-title">👤 1. Datos Personales y Contacto</div>
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">17. Nombre Completo</div>
+            <div class="field-value">${data.fullName}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">18. Teléfono / WhatsApp</div>
+            <div class="field-value"><a href="tel:${data.phone}" style="color: #480CA8; text-decoration: none;">${data.phone}</a></div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">19. Correo Electrónico</div>
+            <div class="field-value"><a href="mailto:${data.email}" style="color: #480CA8; text-decoration: none;">${data.email}</a></div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">11. Comuna / Ciudad de Residencia</div>
+            <div class="field-value">${data.communeCity || "No especificada"}</div>
+          </div>
+        </div>
+
+        <div class="section-title">🚚 2. Experiencia y Licencia</div>
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">3. ¿Experiencia en transporte?</div>
+            <div class="field-value">${data.experienceTransport || "N/A"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">4. Años de Experiencia</div>
+            <div class="field-value">${data.yearsExperience || "N/A"}</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">5. Licencia de Conducir</div>
+            <div class="field-value" style="color: #480CA8;">${data.licenseType || "N/A"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">6. ¿Exp. Carga / Pasajeros?</div>
+            <div class="field-value">${data.drivingExperienceCargoPassengers || "N/A"}</div>
+          </div>
+        </div>
+
+        <div class="section-title">🚛 3. Vehículo y Documentación</div>
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">7. Tipo de Vehículo</div>
+            <div class="field-value">${data.vehicleType || "No tiene vehículo propio"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">8. Propiedad del Vehículo</div>
+            <div class="field-value">${data.vehicleOwnership || "N/A"}</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">9. Año del Vehículo</div>
+            <div class="field-value">${data.vehicleYear || "N/A"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">10. Documentación Vigente</div>
+            <div class="field-value">${data.vehicleDocValid || "N/A"}</div>
+          </div>
+        </div>
+
+        <div class="section-title">⏱️ 4. Disponibilidad y CV</div>
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">12. Disponibilidad Turnos</div>
+            <div class="field-value">${data.shiftAvailability || "N/A"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">13. Fecha de Inicio</div>
+            <div class="field-value">${data.startAvailability || "N/A"}</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field-card">
+            <div class="field-label">15. CV Actualizado</div>
+            <div class="field-value">${data.cvUpdated || "N/A"}</div>
+          </div>
+          <div class="field-card">
+            <div class="field-label">16. Archivo CV Adjunto</div>
+            <div class="field-value">${data.cvFileName ? `📄 ${data.cvFileName} (Adjunto al correo)` : "No adjuntado en chat"}</div>
+          </div>
+        </div>
+
+        ${data.additionalNotes ? `
+        <div style="margin-top: 16px;">
+          <div class="field-label">20. Comentarios adicionales del candidato:</div>
+          <div class="message-box">${data.additionalNotes.replace(/\n/g, "<br>")}</div>
+        </div>
+        ` : ""}
+
+        <div style="text-align: center; margin-top: 28px;">
+          <a href="https://wa.me/${data.phone.replace(/\D/g, "")}?text=${encodeURIComponent(`Hola ${data.fullName}, te contactamos desde DASAI Logística respecto a tu postulación realizada en nuestro asistente virtual.`)}" class="btn">Abrir WhatsApp con ${data.fullName}</a>
+          <a href="mailto:${data.email}?subject=Postulación en DASAI Logística - ${encodeURIComponent(data.fullName)}" class="btn-purple">Enviar Correo</a>
+        </div>
+
+      </div>
+      <div class="footer">
+        Notificación generada automáticamente desde el Asistente Virtual / Bot de <strong>dasai.cl</strong>.<br>
+        Destinatarios notificados: ${recipients.join(", ")}
+      </div>
+    </div>
+  </body>
+  </html>
+  `;
+
+  const mailOptions: SendMailOptions = {
+    from: `"Bot DASAI WhatsApp" <${senderEmail}>`,
+    to: recipients,
+    replyTo: data.email || senderEmail,
+    subject: `[Bot WhatsApp DASAI] Postulación Conductor: ${data.fullName} (${data.phone})`,
+    html: htmlContent,
+    text: `Nuevo lead del bot de WhatsApp en dasai.cl\n\nNombre: ${data.fullName}\nTeléfono: ${data.phone}\nCorreo: ${data.email}\nComuna: ${data.communeCity || "N/A"}\nLicencia: ${data.licenseType || "N/A"}\nExperiencia: ${data.yearsExperience || "N/A"}\nVehículo: ${data.vehicleType || "N/A"} (${data.vehicleYear || "N/A"})\nDisponibilidad: ${data.startAvailability || "N/A"}\nNotas: ${data.additionalNotes || "N/A"}`,
+  };
+
+  if (data.rawAttachment && data.rawAttachment.content) {
+    mailOptions.attachments = [
+      {
+        filename: data.rawAttachment.filename,
+        content: Buffer.from(data.rawAttachment.content, "base64"),
+        contentType: data.rawAttachment.contentType || "application/pdf",
+      },
+    ];
+  }
+
+  return await sendWithFallback(mailOptions);
+}
+
