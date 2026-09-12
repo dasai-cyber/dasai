@@ -22,17 +22,24 @@ export function getTransporter() {
   const pass = process.env.SMTP_PASS || process.env.ZOHO_PASSWORD || "";
 
   if (!pass) {
+    console.warn("[Mailer Warning] No se ha configurado SMTP_PASS en las variables de entorno de Vercel. El correo se simulará en logs.");
     return null;
   }
 
   return nodemailer.createTransport({
     host,
     port,
-    secure: port === 465,
+    secure: port === 465, // true para SSL en 465, false para TLS en 587
     auth: {
       user,
       pass,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
   });
 }
 
@@ -143,7 +150,14 @@ export async function sendContactNotification({
     text: `Nuevo mensaje de contacto en dasai.cl\n\nNombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone || "N/A"}\nAsunto: ${subject}\n\nMensaje:\n${message}\n\nFecha: ${formattedDate}`,
   };
 
-  return await transporter.sendMail(mailOptions);
+  try {
+    const result = await transporter.sendMail(mailOptions);
+    console.log("[Mailer Success] Contacto enviado a:", recipients, "MessageId:", result.messageId);
+    return result;
+  } catch (err) {
+    console.error("[Mailer Error] Error enviando correo de contacto:", err);
+    throw err;
+  }
 }
 
 export interface SendQuoteEmailParams {
@@ -286,7 +300,14 @@ export async function sendQuoteNotification(data: SendQuoteEmailParams) {
     text: `Nueva cotización en dasai.cl\n\nCliente: ${data.firstName} ${data.lastName}\nEmpresa: ${data.company || "N/A"}\nTeléfono: ${data.phone}\nCorreo: ${data.email}\nServicio: ${data.serviceType}\nVehículo: ${data.vehicleType}\nVolumen: ${data.estimatedVolume || "N/A"}\nFrecuencia: ${data.frequency}\nRuta: ${data.origin} -> ${data.destination} (${data.city}, ${data.region})\n\nDescripción:\n${data.description}`,
   };
 
-  return await transporter.sendMail(mailOptions);
+  try {
+    const result = await transporter.sendMail(mailOptions);
+    console.log("[Mailer Success] Cotización enviada a:", recipients, "MessageId:", result.messageId);
+    return result;
+  } catch (err) {
+    console.error("[Mailer Error] Error enviando cotización:", err);
+    throw err;
+  }
 }
 
 export interface SendDriverEmailParams {
@@ -436,5 +457,12 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
     text: `Nueva postulación de chofer en dasai.cl\n\nNombre: ${data.fullName}\nRUT: ${data.rut}\nTeléfono: ${data.phone}\nWhatsApp/Secundario: ${data.secondaryPhone || "N/A"}\nCorreo: ${data.email || "N/A"}\nDirección: ${data.address || "N/A"}, ${data.commune || "N/A"}\nEstudios: ${data.education || "N/A"}\nVehículo: ${data.vehicleModel || "N/A"} (${data.vehicleYear || "N/A"}) - Patente: ${data.licensePlate || "N/A"}`,
   };
 
-  return await transporter.sendMail(mailOptions);
+  try {
+    const result = await transporter.sendMail(mailOptions);
+    console.log("[Mailer Success] Chofer enviado a:", recipients, "MessageId:", result.messageId);
+    return result;
+  } catch (err) {
+    console.error("[Mailer Error] Error enviando notificación de chofer:", err);
+    throw err;
+  }
 }
