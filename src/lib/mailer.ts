@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import nodemailer, { type SendMailOptions } from "nodemailer";
 import { COMPANY_DATA } from "./company";
 
 export const DEFAULT_RECIPIENTS = [
@@ -39,7 +39,7 @@ export function createZohoTransporter(host = "smtp.zoho.com", port = 465, secure
   });
 }
 
-export async function sendWithFallback(mailOptions: nodemailer.SendMailOptions) {
+export async function sendWithFallback(mailOptions: SendMailOptions) {
   const customHost = process.env.SMTP_HOST?.trim();
   const hosts = customHost 
     ? [customHost, "smtp.zoho.com", "smtppro.zoho.com"]
