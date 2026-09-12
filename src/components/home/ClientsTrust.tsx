@@ -2,49 +2,50 @@ import React from "react";
 import Image from "next/image";
 import { Container } from "../layout/Container";
 import { COMPANY_DATA } from "@/lib/company";
-import { Building2 } from "lucide-react";
 
 export function ClientsTrust() {
+  // Multiply the logo list to guarantee a seamless, continuous infinite scroll loop
+  const logos = COMPANY_DATA.clientLogos;
+  const marqueeItems = [...logos, ...logos, ...logos, ...logos, ...logos, ...logos];
+
   return (
-    <section className="py-12 sm:py-16 bg-white border-y border-slate-100">
+    <section className="py-12 sm:py-16 bg-white border-y border-slate-100 overflow-hidden relative">
       <Container>
-        <div className="text-center mb-8 sm:mb-10">
+        <div className="text-center mb-8">
           <span className="text-xs font-bold uppercase tracking-widest text-[#6C5E8A]">
             Empresas que confían en nuestras operaciones de transporte
           </span>
         </div>
+      </Container>
 
-        <div className="flex flex-wrap items-center justify-center gap-5 sm:gap-8 max-w-4xl mx-auto">
-          {COMPANY_DATA.clientLogos.map((client, idx) => (
+      {/* Marquee Carousel Container with side gradient masks */}
+      <div className="relative w-full overflow-hidden py-2">
+        {/* Left and Right Fade Gradients */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+
+        {/* Scrolling Track */}
+        <div className="animate-marquee flex items-center gap-6 sm:gap-10">
+          {marqueeItems.map((client, idx) => (
             <div
               key={idx}
-              className="w-full sm:w-72 p-5 sm:p-6 rounded-2xl bg-[#FCF9FF] border border-[#EADBFC] hover:bg-white hover:border-[#7209B7]/40 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center gap-3 group"
+              className="w-52 sm:w-64 h-24 sm:h-28 px-6 sm:px-8 rounded-2xl bg-[#FCF9FF] border border-[#EADBFC] hover:bg-white hover:border-[#7209B7]/50 hover:shadow-lg transition-all duration-300 flex items-center justify-center shrink-0 group cursor-default"
             >
-              {client.logo ? (
-                <div className="relative w-full h-14 flex items-center justify-center overflow-hidden rounded-lg">
+              {client.logo && (
+                <div className="relative w-full h-14 flex items-center justify-center">
                   <Image
                     src={client.logo}
                     alt={`Logo ${client.name}`}
                     width={220}
-                    height={56}
-                    className="max-h-12 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+                    height={60}
+                    className="max-h-12 w-auto object-contain transition-all duration-300 filter grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                   />
                 </div>
-              ) : (
-                <Building2 className="w-8 h-8 text-[#7209B7] group-hover:text-[#F72585] transition-colors" />
               )}
-              <div className="text-center">
-                <span className="text-xs font-extrabold text-slate-800 block group-hover:text-[#480CA8] transition-colors">
-                  {client.name}
-                </span>
-                <span className="text-[11px] font-medium text-slate-400">
-                  {client.industry}
-                </span>
-              </div>
             </div>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
