@@ -221,9 +221,16 @@ export function JobApplicationForm() {
             <input
               type="tel"
               {...register("secondaryPhone")}
-              placeholder="Ej: 56911223344"
-              className="w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+              placeholder="Ej: +56 9 1122 3344"
+              className={`w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-1 transition-all ${
+                errors.secondaryPhone
+                  ? "border-red-400/80 focus:border-red-400 focus:ring-red-400/20"
+                  : "border-slate-700/80 focus:border-emerald-500 focus:ring-emerald-500/20"
+              }`}
             />
+            {errors.secondaryPhone && (
+              <p className="text-[11px] text-red-400 mt-1">{errors.secondaryPhone.message}</p>
+            )}
           </div>
         </div>
 
@@ -237,7 +244,11 @@ export function JobApplicationForm() {
               type="email"
               {...register("email")}
               placeholder="nombre@correo.cl"
-              className="w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+              className={`w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-1 transition-all ${
+                errors.email
+                  ? "border-red-400/80 focus:border-red-400 focus:ring-red-400/20"
+                  : "border-slate-700/80 focus:border-emerald-500 focus:ring-emerald-500/20"
+              }`}
             />
             {errors.email && (
               <p className="text-[11px] text-red-400 mt-1">{errors.email.message}</p>
@@ -267,8 +278,15 @@ export function JobApplicationForm() {
               type="text"
               {...register("licensePlate")}
               placeholder="Ej: AB-CD-12"
-              className="w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all uppercase"
+              className={`w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-1 transition-all uppercase ${
+                errors.licensePlate
+                  ? "border-red-400/80 focus:border-red-400 focus:ring-red-400/20"
+                  : "border-slate-700/80 focus:border-emerald-500 focus:ring-emerald-500/20"
+              }`}
             />
+            {errors.licensePlate && (
+              <p className="text-[11px] text-red-400 mt-1">{errors.licensePlate.message}</p>
+            )}
           </div>
 
           <div>
@@ -291,8 +309,15 @@ export function JobApplicationForm() {
               type="text"
               {...register("vehicleYear")}
               placeholder="Ej: 2018"
-              className="w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border border-slate-700/80 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 transition-all"
+              className={`w-full px-4 py-2.5 rounded-xl bg-[#1e2330] border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-1 transition-all ${
+                errors.vehicleYear
+                  ? "border-red-400/80 focus:border-red-400 focus:ring-red-400/20"
+                  : "border-slate-700/80 focus:border-emerald-500 focus:ring-emerald-500/20"
+              }`}
             />
+            {errors.vehicleYear && (
+              <p className="text-[11px] text-red-400 mt-1">{errors.vehicleYear.message}</p>
+            )}
           </div>
         </div>
 

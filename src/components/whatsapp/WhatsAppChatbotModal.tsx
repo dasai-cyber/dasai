@@ -11,6 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { COMPANY_DATA } from "@/lib/company";
+import { isValidEmail, isValidPhone, isValidVehicleYear } from "@/lib/validations";
 
 interface Message {
   id: string;
@@ -263,11 +264,20 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
       case 6: // 6. ¿El vehículo es propio o de un tercero?
         setAnswers((prev) => ({ ...prev, vehicleOwnership: value }));
         setCurrentStep(7);
-        botReply("7. ¿Qué año es tu vehículo?", undefined, "text", "Ej: 2022");
+        botReply("7. ¿Qué año es tu vehículo? (Ingresa 4 dígitos, ej: 2021)", undefined, "text", "Ej: 2021");
         break;
 
       case 7: // 7. ¿Qué año es tu vehículo?
-        setAnswers((prev) => ({ ...prev, vehicleYear: value }));
+        if (!isValidVehicleYear(value)) {
+          botReply(
+            "⚠️ Por favor ingresa un año válido de 4 dígitos (ejemplo: 2021 o 2018).",
+            undefined,
+            "text",
+            "Ej: 2021"
+          );
+          return;
+        }
+        setAnswers((prev) => ({ ...prev, vehicleYear: value.trim() }));
         setCurrentStep(8);
         botReply("8. ¿Tienes la documentación del vehículo vigente?", [
           "Sí",
@@ -283,7 +293,16 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         break;
 
       case 9: // 9. ¿En qué comuna o ciudad resides?
-        setAnswers((prev) => ({ ...prev, communeCity: value }));
+        if (value.trim().length < 2) {
+          botReply(
+            "⚠️ Por favor ingresa una comuna o ciudad válida (ej: Pudahuel, Santiago, San Bernardo).",
+            undefined,
+            "text",
+            "Ej: Pudahuel, Maipú, Rancagua..."
+          );
+          return;
+        }
+        setAnswers((prev) => ({ ...prev, communeCity: value.trim() }));
         setCurrentStep(10);
         botReply("10. ¿Tienes disponibilidad para trabajar en turnos?", [
           "Sí",
@@ -310,19 +329,46 @@ export function WhatsAppChatbotModal({ isOpen, onClose }: WhatsAppChatbotModalPr
         break;
 
       case 12: // 12. ¿Cuál es tu nombre completo?
-        setAnswers((prev) => ({ ...prev, fullName: value }));
+        if (value.trim().length < 3 || !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value.trim())) {
+          botReply(
+            "⚠️ Por favor ingresa tu nombre y apellido (solo letras, ej: Juan Carlos Morales).",
+            undefined,
+            "text",
+            "Ej: Juan Carlos Morales"
+          );
+          return;
+        }
+        setAnswers((prev) => ({ ...prev, fullName: value.trim() }));
         setCurrentStep(13);
-        botReply("13. ¿Cuál es tu número de teléfono?", undefined, "phone", "Ej: +56 9 8765 4321");
+        botReply("13. ¿Cuál es tu número de teléfono de contacto?", undefined, "phone", "Ej: +56 9 8765 4321");
         break;
 
       case 13: // 13. ¿Cuál es tu número de teléfono?
-        setAnswers((prev) => ({ ...prev, phone: value }));
+        if (!isValidPhone(value)) {
+          botReply(
+            "⚠️ Formato de teléfono inválido. Por favor ingresa un número de 8 a 9 dígitos (ejemplo: +56 9 8765 4321 o 987654321).",
+            undefined,
+            "phone",
+            "Ej: +56 9 8765 4321"
+          );
+          return;
+        }
+        setAnswers((prev) => ({ ...prev, phone: value.trim() }));
         setCurrentStep(14);
         botReply("14. ¿Cuál es tu correo electrónico?", undefined, "email", "Ej: tu.nombre@gmail.com");
         break;
 
       case 14: // 14. ¿Cuál es tu correo electrónico?
-        setAnswers((prev) => ({ ...prev, email: value }));
+        if (!isValidEmail(value)) {
+          botReply(
+            "⚠️ Formato de correo electrónico inválido. Por favor ingresa un correo con formato válido (ejemplo: nombre@gmail.com o usuario@empresa.cl).",
+            undefined,
+            "email",
+            "Ej: tu.nombre@gmail.com"
+          );
+          return;
+        }
+        setAnswers((prev) => ({ ...prev, email: value.trim() }));
         setCurrentStep(15);
         botReply(
           "15. ¿Hay algo más que quieras contarnos sobre tu experiencia o disponibilidad?",
