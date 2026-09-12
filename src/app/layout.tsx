@@ -62,6 +62,14 @@ export const metadata: Metadata = {
       "Distribución programada, última milla y transporte de carga con flota propia y monitoreo en tiempo real.",
     images: ["/images/hero/hero-logistics.svg"],
   },
+  icons: {
+    icon: [
+      { url: "/images/logo/logo_dasai.png" },
+      { url: "/icon.png" },
+    ],
+    shortcut: "/images/logo/logo_dasai.png",
+    apple: "/images/logo/logo_dasai.png",
+  },
 };
 
 export default function RootLayout({
