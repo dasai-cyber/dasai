@@ -268,11 +268,11 @@ export function JobApplicationForm() {
           </div>
         </div>
 
-        {/* Fila 5: Patente, Modelo, Año */}
+        {/* Fila 5: PPU, Modelo, Año */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-1">
           <div>
             <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-              Patente
+              PPU
             </label>
             <input
               type="text"

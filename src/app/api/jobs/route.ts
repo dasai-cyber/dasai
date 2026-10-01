@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
           email: validatedData.email || `${validatedData.rut.replace(/[^a-zA-Z0-9]/g, "")}@dasai-postulante.local`,
           phone: validatedData.phone,
           position: `Chofer / Conductor`,
-          experience: `Vehículo: ${validatedData.vehicleModel || "N/A"} (${validatedData.vehicleYear || "N/A"}) - Patente: ${validatedData.licensePlate || "N/A"}`,
+          experience: `Vehículo: ${validatedData.vehicleModel || "N/A"} (${validatedData.vehicleYear || "N/A"}) - PPU: ${validatedData.licensePlate || "N/A"}`,
           licenseType: "Conductor",
           message: `RUT: ${validatedData.rut} | Dirección: ${validatedData.address || "N/A"}, ${validatedData.commune || "N/A"} | WhatsApp: ${validatedData.secondaryPhone || "N/A"} | Estudios: ${validatedData.education || "N/A"}`,
         },

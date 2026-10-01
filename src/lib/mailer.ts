@@ -409,7 +409,7 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
         <div class="section-heading">🚛 Datos del Vehículo</div>
         <div class="grid-3">
           <div class="field-card">
-            <div class="field-label">Patente</div>
+            <div class="field-label">PPU</div>
             <div class="field-value">${data.licensePlate || "A consultar"}</div>
           </div>
           <div class="field-card">
@@ -443,7 +443,7 @@ export async function sendDriverNotification(data: SendDriverEmailParams) {
     replyTo: data.email || senderEmail,
     subject: `[Nuevo Chofer DASAI] ${data.fullName} - RUT: ${data.rut}`,
     html: htmlContent,
-    text: `Nueva postulación de chofer en dasai.cl\n\nNombre: ${data.fullName}\nRUT: ${data.rut}\nTeléfono: ${data.phone}\nWhatsApp/Secundario: ${data.secondaryPhone || "N/A"}\nCorreo: ${data.email || "N/A"}\nDirección: ${data.address || "N/A"}, ${data.commune || "N/A"}\nEstudios: ${data.education || "N/A"}\nVehículo: ${data.vehicleModel || "N/A"} (${data.vehicleYear || "N/A"}) - Patente: ${data.licensePlate || "N/A"}`,
+    text: `Nueva postulación de chofer en dasai.cl\n\nNombre: ${data.fullName}\nRUT: ${data.rut}\nTeléfono: ${data.phone}\nWhatsApp/Secundario: ${data.secondaryPhone || "N/A"}\nCorreo: ${data.email || "N/A"}\nDirección: ${data.address || "N/A"}, ${data.commune || "N/A"}\nEstudios: ${data.education || "N/A"}\nVehículo: ${data.vehicleModel || "N/A"} (${data.vehicleYear || "N/A"}) - PPU: ${data.licensePlate || "N/A"}`,
   };
 
   return await sendWithFallback(mailOptions);

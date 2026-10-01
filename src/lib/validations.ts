@@ -157,7 +157,7 @@ export const driverRegistrationSchema = z.object({
     .or(z.literal(""))
     .refine(
       (val) => !val || /^[a-zA-Z0-9]{2,4}[-\s]?[a-zA-Z0-9]{2,4}$/.test(val.trim()),
-      "Formato de patente inválido (ej: ABCD-12 o AB-1234)"
+      "Formato de PPU inválido (ej: ABCD-12 o AB-1234)"
     ),
   vehicleModel: z.string().optional().or(z.literal("")),
   vehicleYear: z
